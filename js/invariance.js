@@ -1,228 +1,119 @@
-class InvarianceAnimation {
-    constructor() {
-        // Define scale stages before initialization
-        this.scaleStages = [
-            { name: 'universe', particleCount: 2000, clusterCount: 15 },
-            { name: 'galaxyClusters', particleCount: 1500, clusterCount: 12 },
-            { name: 'galaxies', particleCount: 1200, clusterCount: 10 },
-            { name: 'starClusters', particleCount: 1000, clusterCount: 8 },
-            { name: 'solarSystems', particleCount: 800, clusterCount: 6 },
-            { name: 'planets', particleCount: 600, clusterCount: 5 },
-            { name: 'macroLife', particleCount: 400, clusterCount: 4 },
-            { name: 'mediumLife', particleCount: 300, clusterCount: 3 },
-            { name: 'microLife', particleCount: 200, clusterCount: 3 },
-            { name: 'cellular', particleCount: 150, clusterCount: 2 },
-            { name: 'molecular', particleCount: 100, clusterCount: 2 },
-            { name: 'atomic', particleCount: 2000, clusterCount: 15 } // Matches universe for seamless loop
-        ];
-        
-        this.currentStageIndex = 0;
-        this.zoomDuration = 15000; // 15 seconds for full loop
-        this.stageTransitionTime = this.zoomDuration / this.scaleStages.length;
-        this.particles = [];
-        this.clusters = [];
-        
-        // Initialize after properties are defined
-        this.init();
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collective</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="timestamp">Last Updated: 2025-08-28 23:24:55 UTC</div>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    The Collective
+                </div>
+                <div class="nav-links">
+                    <a href="#mission">Mission</a>
+                    <a href="#work">Our Work</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
+            </nav>
+        </header>
 
-    init() {
-        // Create container
-        this.container = document.createElement('div');
-        this.container.className = 'invariance-container';
-        document.body.appendChild(this.container);
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to <span class="gradient-text">The Collective</span></h1>
+                    <div class="hero-message">
+                        <p>You're here because someone thought you should be.</p>
+                        <p>We are a private, invite-only creative collective — a space where ideas move quietly, work speaks louder than words, and access is rare by design. What you're about to see isn't for the masses. It's for the few who are building, imagining, and shaping what comes next.</p>
+                        <p>Most people will never hear about this place.</p>
+                        <p>You just did.</p>
+                        <p class="cta-text">Enter.</p>
+                        <p class="subtle-text">(Or don't. Some doors were never meant to be knocked on.)</p>
+                    </div>
+                </div>
+            </section>
 
-        // Create zoom wrapper
-        this.zoomWrapper = document.createElement('div');
-        this.zoomWrapper.className = 'zoom-wrapper';
-        this.container.appendChild(this.zoomWrapper);
+            <section id="mission" class="mission">
+                <div class="section-grid">
+                    <div class="text-content">
+                        <h2>Our Mission</h2>
+                        <div class="mission-text">
+                            <p class="highlight">What do we truly want?</p>
+                            <p class="gradient-border">We are dreamers and makers united by a simple truth:
+                            When people peel back the layers of expectation,
+                            something extraordinary awakens.</p>
+                            <p>Like seeds breaking through soil toward sunlight,
+                            our truest ambitions wait beneath the surface,
+                            patient, powerful, preparing to bloom.</p>
+                        </div>
+                    </div>
+                    <div class="visual-element">
+                        <div class="animated-circle"></div>
+                    </div>
+                </div>
+            </section>
 
-        // Add necessary styles
-        this.addStyles();
-        
-        // Initialize particles and clusters
-        this.initializeParticles();
-        this.initializeClusters();
-        
-        // Start animation loop
-        this.startAnimation();
-    }
+            <section class="features">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i data-feather="compass"></i>
+                        <h3>Discover</h3>
+                        <p>Uncover your path</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-feather="zap"></i>
+                        <h3>Create</h3>
+                        <p>Build your vision</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-feather="trending-up"></i>
+                        <h3>Grow</h3>
+                        <p>Expand your horizons</p>
+                    </div>
+                </div>
+            </section>
 
-    addStyles() {
-        const styles = `
-            .invariance-container {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -2;
-                background: var(--darker-bg, #050505);
-                overflow: hidden;
-                perspective: 1000px;
-            }
+            <section id="contact" class="contact">
+                <div class="contact-container">
+                    <h2>Join Our Journey</h2>
+                    <p>We are artists, thinkers, creators, and dreamers.</p>
+                    <button class="cta-button">
+                        Get in Touch
+                        <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
 
-            .zoom-wrapper {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                transform-style: preserve-3d;
-            }
-
-            .particle {
-                position: absolute;
-                width: 2px;
-                height: 2px;
-                background: radial-gradient(circle at center, 
-                    rgba(107, 58, 255, 0.8) 0%, 
-                    rgba(107, 58, 255, 0.1) 100%);
-                border-radius: 50%;
-                transform-style: preserve-3d;
-                will-change: transform;
-            }
-
-            .cluster {
-                position: absolute;
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                background: radial-gradient(circle at center,
-                    rgba(255, 51, 102, 0.4) 0%,
-                    rgba(255, 51, 102, 0.1) 50%,
-                    transparent 100%);
-                transform-style: preserve-3d;
-                will-change: transform;
-            }
-        `;
-
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = styles;
-        document.head.appendChild(styleSheet);
-    }
-
-    initializeParticles() {
-        const maxParticles = Math.max(...this.scaleStages.map(stage => stage.particleCount));
-        
-        for (let i = 0; i < maxParticles; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            this.zoomWrapper.appendChild(particle);
-            this.particles.push({
-                element: particle,
-                x: 0,
-                y: 0,
-                z: 0,
-                scale: 1,
-                opacity: 1
-            });
-        }
-    }
-
-    initializeClusters() {
-        const maxClusters = Math.max(...this.scaleStages.map(stage => stage.clusterCount));
-        
-        for (let i = 0; i < maxClusters; i++) {
-            const cluster = document.createElement('div');
-            cluster.className = 'cluster';
-            this.zoomWrapper.appendChild(cluster);
-            this.clusters.push({
-                element: cluster,
-                x: 0,
-                y: 0,
-                z: 0,
-                scale: 1,
-                opacity: 1
-            });
-        }
-    }
-
-    updateStage(progress) {
-        const currentStage = this.scaleStages[this.currentStageIndex];
-        const nextStageIndex = (this.currentStageIndex + 1) % this.scaleStages.length;
-        const nextStage = this.scaleStages[nextStageIndex];
-
-        // Update particles
-        this.particles.forEach((particle, index) => {
-            if (index < Math.max(currentStage.particleCount, nextStage.particleCount)) {
-                const scale = this.interpolateZoom(progress);
-                const opacity = index < nextStage.particleCount ? 1 : 1 - progress;
-
-                particle.element.style.transform = `translate3d(${particle.x}px, ${particle.y}px, ${particle.z * scale}px) scale(${scale})`;
-                particle.element.style.opacity = opacity;
-            }
-        });
-
-        // Update clusters
-        this.clusters.forEach((cluster, index) => {
-            if (index < Math.max(currentStage.clusterCount, nextStage.clusterCount)) {
-                const scale = this.interpolateZoom(progress);
-                const opacity = index < nextStage.clusterCount ? 1 : 1 - progress;
-
-                cluster.element.style.transform = `translate3d(${cluster.x}px, ${cluster.y}px, ${cluster.z * scale}px) scale(${scale})`;
-                cluster.element.style.opacity = opacity;
-            }
-        });
-    }
-
-    interpolateZoom(progress) {
-        // Exponential zoom effect
-        return Math.pow(2, progress * 4);
-    }
-
-    startAnimation() {
-        let startTime = performance.now();
-        
-        const animate = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = (elapsed % this.stageTransitionTime) / this.stageTransitionTime;
-
-            if (elapsed >= this.stageTransitionTime) {
-                this.currentStageIndex = (this.currentStageIndex + 1) % this.scaleStages.length;
-                startTime = currentTime;
-                this.repositionElements();
-            }
-
-            this.updateStage(progress);
-            requestAnimationFrame(animate);
-        };
-
-        // Initial positioning
-        this.repositionElements();
-        requestAnimationFrame(animate);
-    }
-
-    repositionElements() {
-        const stage = this.scaleStages[this.currentStageIndex];
-        
-        // Reposition particles
-        this.particles.forEach((particle, index) => {
-            if (index < stage.particleCount) {
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos((Math.random() * 2) - 1);
-                const radius = Math.random() * 1000;
-
-                particle.x = radius * Math.sin(phi) * Math.cos(theta);
-                particle.y = radius * Math.sin(phi) * Math.sin(theta);
-                particle.z = radius * Math.cos(phi);
-            }
-        });
-
-        // Reposition clusters
-        this.clusters.forEach((cluster, index) => {
-            if (index < stage.clusterCount) {
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos((Math.random() * 2) - 1);
-                const radius = Math.random() * 800;
-
-                cluster.x = radius * Math.sin(phi) * Math.cos(theta);
-                cluster.y = radius * Math.sin(phi) * Math.sin(theta);
-                cluster.z = radius * Math.cos(phi);
-            }
-        });
-    }
-}
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new InvarianceAnimation();
-});
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">The Collective</div>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i data-feather="twitter"></i></a>
+                    <a href="#" class="social-icon"><i data-feather="instagram"></i></a>
+                    <a href="#" class="social-icon"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 The Collective. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        feather.replace();
+    </script>
+    <script src="js/invariance.js"></script>
+</body>
+</html>

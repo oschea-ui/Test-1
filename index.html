@@ -7,64 +7,110 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
+    <div class="noise"></div>
     <div class="container">
         <header>
             <nav>
-                <div class="logo">The Collective</div>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    The Collective
+                </div>
                 <div class="nav-links">
                     <a href="#mission">Mission</a>
                     <a href="#work">Our Work</a>
                     <a href="#contact">Contact</a>
                 </div>
+                <button class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
             </nav>
         </header>
 
         <main>
             <section class="hero">
-                <h1>The Collective</h1>
-                <div class="accent-line"></div>
+                <div class="hero-content">
+                    <h1>Unlock Your <span class="gradient-text">True</span> Potential</h1>
+                    <div class="hero-subtitle">Where creativity meets purpose</div>
+                    <div class="floating-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                    </div>
+                </div>
             </section>
 
             <section id="mission" class="mission">
-                <h2>Our Mission</h2>
-                <div class="mission-text">
-                    <p class="highlight">In the quiet moments between thoughts,<br>
-                    lies the most vital question we rarely dare to ask:<br>
-                    <em>What do we truly want?</em></p>
+                <div class="section-grid">
+                    <div class="text-content">
+                        <h2>Our Mission</h2>
+                        <div class="mission-text">
+                            <p class="highlight">What do we truly want?</p>
+                            <p class="gradient-border">We are dreamers and makers united by a simple truth:
+                            When people peel back the layers of expectation,
+                            something extraordinary awakens.</p>
+                            <p>Like seeds breaking through soil toward sunlight,
+                            our truest ambitions wait beneath the surface,
+                            patient, powerful, preparing to bloom.</p>
+                        </div>
+                    </div>
+                    <div class="visual-element">
+                        <div class="animated-circle"></div>
+                    </div>
+                </div>
+            </section>
 
-                    <p>We are dreamers and makers united by a simple truth:<br>
-                    When people peel back the layers of expectation,<br>
-                    When they dare to whisper their deepest desires,<br>
-                    Something extraordinary awakens.</p>
-
-                    <p>Like seeds breaking through soil toward sunlight,<br>
-                    our truest ambitions wait beneath the surface,<br>
-                    patient, powerful, preparing to bloom.</p>
-
-                    <p>Because when we finally ask ourselves<br>
-                    what sets our souls alight,<br>
-                    we don't just find answers—<br>
-                    we find ourselves.<br>
-                    And in that discovery,<br>
-                    we become unlimited.</p>
+            <section class="features">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i data-feather="compass"></i>
+                        <h3>Discover</h3>
+                        <p>Uncover your path</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-feather="zap"></i>
+                        <h3>Create</h3>
+                        <p>Build your vision</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-feather="trending-up"></i>
+                        <h3>Grow</h3>
+                        <p>Expand your horizons</p>
+                    </div>
                 </div>
             </section>
 
             <section id="contact" class="contact">
-                <h2>Join Our Journey</h2>
-                <p>We are artists, thinkers, creators, and dreamers.<br>
-                Together, we're rewriting the stories we tell ourselves<br>
-                about what's possible.</p>
-                <button class="cta-button">Get in Touch</button>
+                <div class="contact-container">
+                    <h2>Join Our Journey</h2>
+                    <p>We are artists, thinkers, creators, and dreamers.</p>
+                    <button class="cta-button">
+                        Get in Touch
+                        <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 The Collective. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-logo">The Collective</div>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i data-feather="twitter"></i></a>
+                    <a href="#" class="social-icon"><i data-feather="instagram"></i></a>
+                    <a href="#" class="social-icon"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 The Collective. All rights reserved.</p>
+            </div>
         </footer>
     </div>
+    <script>
+      feather.replace();
+    </script>
 </body>
 </html>

@@ -1,94 +1,220 @@
-class InvarianceBackground {
+class InvarianceAnimation {
     constructor() {
-        this.container = document.querySelector('.scale-container');
-        this.layers = [];
-        this.particles = [];
         this.init();
+        this.scaleStages = [
+            { name: 'universe', particleCount: 2000, clusterCount: 15 },
+            { name: 'galaxyClusters', particleCount: 1500, clusterCount: 12 },
+            { name: 'galaxies', particleCount: 1200, clusterCount: 10 },
+            { name: 'starClusters', particleCount: 1000, clusterCount: 8 },
+            { name: 'solarSystems', particleCount: 800, clusterCount: 6 },
+            { name: 'planets', particleCount: 600, clusterCount: 5 },
+            { name: 'macroLife', particleCount: 400, clusterCount: 4 },
+            { name: 'mediumLife', particleCount: 300, clusterCount: 3 },
+            { name: 'microLife', particleCount: 200, clusterCount: 3 },
+            { name: 'cellular', particleCount: 150, clusterCount: 2 },
+            { name: 'molecular', particleCount: 100, clusterCount: 2 },
+            { name: 'atomic', particleCount: 2000, clusterCount: 15 } // Matches universe for seamless loop
+        ];
+        this.currentStageIndex = 0;
+        this.zoomDuration = 15000; // 15 seconds for full loop
+        this.stageTransitionTime = this.zoomDuration / this.scaleStages.length;
+        this.particles = [];
+        this.clusters = [];
     }
 
     init() {
-        // Create multiple scale layers
-        for (let i = 0; i < 8; i++) {
-            this.createScaleLayer(i);
-        }
+        // Create container
+        this.container = document.createElement('div');
+        this.container.className = 'invariance-container';
+        document.body.appendChild(this.container);
+
+        // Create zoom wrapper
+        this.zoomWrapper = document.createElement('div');
+        this.zoomWrapper.className = 'zoom-wrapper';
+        this.container.appendChild(this.zoomWrapper);
+
+        // Add necessary styles
+        this.addStyles();
         
-        // Create particles
-        this.createParticles();
+        // Initialize particles and clusters
+        this.initializeParticles();
+        this.initializeClusters();
         
-        // Start animation
-        this.animate();
+        // Start animation loop
+        this.startAnimation();
     }
 
-    createScaleLayer(index) {
-        const layer = document.createElement('div');
-        layer.className = 'scale-layer';
-        
-        // Exponential size increase for each layer
-        const size = Math.pow(2, index + 4);
-        layer.style.width = `${size}px`;
-        layer.style.height = `${size}px`;
-        
-        // Create orbital rings for each layer
-        for (let i = 0; i < 3; i++) {
-            const orbital = document.createElement('div');
-            orbital.className = 'orbital';
-            orbital.style.width = `${size * 0.8 - i * 20}px`;
-            orbital.style.height = `${size * 0.8 - i * 20}px`;
-            orbital.style.animation = `rotate ${20 + i * 5}s linear infinite`;
-            layer.appendChild(orbital);
-        }
-        
-        this.container.appendChild(layer);
-        this.layers.push(layer);
+    addStyles() {
+        const styles = `
+            .invariance-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -2;
+                background: var(--darker-bg);
+                overflow: hidden;
+                perspective: 1000px;
+            }
+
+            .zoom-wrapper {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+            }
+
+            .particle {
+                position: absolute;
+                background: radial-gradient(circle at center, 
+                    rgba(107, 58, 255, 0.8) 0%, 
+                    rgba(107, 58, 255, 0.1) 100%);
+                border-radius: 50%;
+                transform-style: preserve-3d;
+                will-change: transform;
+            }
+
+            .cluster {
+                position: absolute;
+                border-radius: 50%;
+                background: radial-gradient(circle at center,
+                    rgba(255, 51, 102, 0.4) 0%,
+                    rgba(255, 51, 102, 0.1) 50%,
+                    transparent 100%);
+                transform-style: preserve-3d;
+                will-change: transform;
+            }
+        `;
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
     }
 
-    createParticles() {
-        for (let i = 0; i < 50; i++) {
+    initializeParticles() {
+        const maxParticles = Math.max(...this.scaleStages.map(stage => stage.particleCount));
+        
+        for (let i = 0; i < maxParticles; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            
-            // Random size between 2 and 6 pixels
-            const size = Math.random() * 4 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Random position within container
-            this.resetParticle(particle);
-            
-            this.container.appendChild(particle);
-            this.particles.push(particle);
+            this.zoomWrapper.appendChild(particle);
+            this.particles.push({
+                element: particle,
+                x: 0,
+                y: 0,
+                z: 0,
+                scale: 1,
+                opacity: 1
+            });
         }
     }
 
-    resetParticle(particle) {
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 600;
+    initializeClusters() {
+        const maxClusters = Math.max(...this.scaleStages.map(stage => stage.clusterCount));
         
-        particle.style.left = `${Math.cos(angle) * distance}px`;
-        particle.style.top = `${Math.sin(angle) * distance}px`;
-        particle.style.animation = `pulse ${Math.random() * 3 + 2}s infinite`;
+        for (let i = 0; i < maxClusters; i++) {
+            const cluster = document.createElement('div');
+            cluster.className = 'cluster';
+            this.zoomWrapper.appendChild(cluster);
+            this.clusters.push({
+                element: cluster,
+                x: 0,
+                y: 0,
+                z: 0,
+                scale: 1,
+                opacity: 1
+            });
+        }
     }
 
-    animate() {
-        // Scale breathing animation
-        let scale = 1;
-        let increasing = true;
-        
-        setInterval(() => {
-            if (increasing) {
-                scale *= 1.01;
-                if (scale >= 1.2) increasing = false;
-            } else {
-                scale *= 0.99;
-                if (scale <= 0.8) increasing = true;
+    updateStage(progress) {
+        const currentStage = this.scaleStages[this.currentStageIndex];
+        const nextStageIndex = (this.currentStageIndex + 1) % this.scaleStages.length;
+        const nextStage = this.scaleStages[nextStageIndex];
+
+        // Update particles
+        this.particles.forEach((particle, index) => {
+            if (index < Math.max(currentStage.particleCount, nextStage.particleCount)) {
+                const scale = this.interpolateZoom(progress);
+                const opacity = index < nextStage.particleCount ? 1 : 1 - progress;
+
+                particle.element.style.transform = `translate3d(${particle.x}px, ${particle.y}px, ${particle.z * scale}px) scale(${scale})`;
+                particle.element.style.opacity = opacity;
             }
-            
-            this.container.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        }, 50);
+        });
+
+        // Update clusters
+        this.clusters.forEach((cluster, index) => {
+            if (index < Math.max(currentStage.clusterCount, nextStage.clusterCount)) {
+                const scale = this.interpolateZoom(progress);
+                const opacity = index < nextStage.clusterCount ? 1 : 1 - progress;
+
+                cluster.element.style.transform = `translate3d(${cluster.x}px, ${cluster.y}px, ${cluster.z * scale}px) scale(${scale})`;
+                cluster.element.style.opacity = opacity;
+            }
+        });
+    }
+
+    interpolateZoom(progress) {
+        // Exponential zoom effect
+        return Math.pow(2, progress * 4);
+    }
+
+    startAnimation() {
+        let startTime = performance.now();
+        
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = (elapsed % this.stageTransitionTime) / this.stageTransitionTime;
+
+            if (elapsed >= this.stageTransitionTime) {
+                this.currentStageIndex = (this.currentStageIndex + 1) % this.scaleStages.length;
+                startTime = currentTime;
+                this.repositionElements();
+            }
+
+            this.updateStage(progress);
+            requestAnimationFrame(animate);
+        };
+
+        // Initial positioning
+        this.repositionElements();
+        requestAnimationFrame(animate);
+    }
+
+    repositionElements() {
+        const stage = this.scaleStages[this.currentStageIndex];
+        
+        // Reposition particles
+        this.particles.forEach((particle, index) => {
+            if (index < stage.particleCount) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                const radius = Math.random() * 1000;
+
+                particle.x = radius * Math.sin(phi) * Math.cos(theta);
+                particle.y = radius * Math.sin(phi) * Math.sin(theta);
+                particle.z = radius * Math.cos(phi);
+            }
+        });
+
+        // Reposition clusters
+        this.clusters.forEach((cluster, index) => {
+            if (index < stage.clusterCount) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                const radius = Math.random() * 800;
+
+                cluster.x = radius * Math.sin(phi) * Math.cos(theta);
+                cluster.y = radius * Math.sin(phi) * Math.sin(theta);
+                cluster.z = radius * Math.cos(phi);
+            }
+        });
     }
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new InvarianceBackground();
+    new InvarianceAnimation();
 });

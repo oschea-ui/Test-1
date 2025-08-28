@@ -1,6 +1,6 @@
 class InvarianceAnimation {
     constructor() {
-        this.init();
+        // Define scale stages before initialization
         this.scaleStages = [
             { name: 'universe', particleCount: 2000, clusterCount: 15 },
             { name: 'galaxyClusters', particleCount: 1500, clusterCount: 12 },
@@ -15,11 +15,15 @@ class InvarianceAnimation {
             { name: 'molecular', particleCount: 100, clusterCount: 2 },
             { name: 'atomic', particleCount: 2000, clusterCount: 15 } // Matches universe for seamless loop
         ];
+        
         this.currentStageIndex = 0;
         this.zoomDuration = 15000; // 15 seconds for full loop
         this.stageTransitionTime = this.zoomDuration / this.scaleStages.length;
         this.particles = [];
         this.clusters = [];
+        
+        // Initialize after properties are defined
+        this.init();
     }
 
     init() {
@@ -53,7 +57,7 @@ class InvarianceAnimation {
                 width: 100%;
                 height: 100%;
                 z-index: -2;
-                background: var(--darker-bg);
+                background: var(--darker-bg, #050505);
                 overflow: hidden;
                 perspective: 1000px;
             }
@@ -67,6 +71,8 @@ class InvarianceAnimation {
 
             .particle {
                 position: absolute;
+                width: 2px;
+                height: 2px;
                 background: radial-gradient(circle at center, 
                     rgba(107, 58, 255, 0.8) 0%, 
                     rgba(107, 58, 255, 0.1) 100%);
@@ -77,6 +83,8 @@ class InvarianceAnimation {
 
             .cluster {
                 position: absolute;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
                 background: radial-gradient(circle at center,
                     rgba(255, 51, 102, 0.4) 0%,

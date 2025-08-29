@@ -1,1 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Project – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .upload-page {
+      padding: 2rem 0;
+    }
+    
+    .upload-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .upload-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    .form-section {
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #333;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 0.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .file-upload {
+      border: 2px dashed #e9ecef;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    
+    .file-upload:hover {
+      border-color: #667eea;
+    }
+    
+    .requirements-list {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .requirement-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    
+    .requirement-input {
+      flex: 1;
+      margin: 0;
+    }
+    
+    .remove-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    
+    .add-requirement {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      width: 100%;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #667eea;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .upload-form {
+        margin: 1rem;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon"></span>
+          The Studio
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="discussions.html">Discussions</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="showcase.html">Showcase</a>
+        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+      </div>
+    </nav>
+  </header>
 
+  <main>
+    <!-- Upload Header -->
+    <section class="upload-header">
+      <div class="container">
+        <h1>Share Your Creative Vision</h1>
+        <p>Upload your project and find the perfect collaborators to bring it to life</p>
+      </div>
+    </section>
+
+    <div class="container upload-page">
+      <a href="user-dashboard-demo.html" class="back-btn">
+        <i data-feather="arrow-left"></i>
+        Back to Dashboard
+      </a>
+
+      <form class="upload-form" id="uploadForm">
+        <!-- Basic Information -->
+        <div class="form-section">
+          <h2 class="section-title">Project Basics</h2>
+          
+          <div class="form-group">
+            <label class="form-label">Project Title</label>
+            <input type="text" class="form-input" placeholder="Give your project a compelling title..." required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select" required>
+                <option value="">Select a category...</option>
+                <option value="design">Design</option>
+                <option value="development">Development</option>
+                <option value="art">Art</option>
+                <option value="photography">Photography</option>
+                <option value="music">Music</option>
+                <option value="writing">Writing</option>
+                <option value="film">Film & Video</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Project Duration</label>
+              <select class="form-select" required>
+                <option value="">How long will this take?</option>
+                <option value="1-2-weeks">1-2 weeks</option>
+                <option value="1-month">1 month</option>
+                <option value="2-3-months">2-3 months</option>
+                <option value="3-6-months">3-6 months</option>
+                <option value="6-months-plus">6+ months</option>
+                <option value="ongoing">Ongoing</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Project Description</label>
+            <textarea class="form-textarea" placeholder="Describe your project in detail. What are you creating? What's the goal? Who's the target audience?" required></textarea>
+          </div>
+        </div>
+
+        <!-- Project Images -->
+        <div class="form-section">
+          <h2 class="section-title">Project Visuals</h2>
+          
+          <div class="form-group">
+            <label class="form-label">Project Images</label>
+            <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+              <i data-feather="upload" style="width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+              <h3>Upload Images</h3>
+              <p>Drag and drop images here, or click to browse</p>
+              <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Requirements -->
+        <div class="form-section">
+          <h2 class="section-title">Team Requirements</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Team Size</label>
+              <select class="form-select" required>
+                <option value="">How many people do you need?</option>
+                <option value="1">1 person</option>
+                <option value="2-3">2-3 people</option>
+                <option value="4-5">4-5 people</option>
+                <option value="6-10">6-10 people</option>
+                <option value="10-plus">10+ people</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Experience Level</label>
+              <select class="form-select" required>
+                <option value="">Required experience level...</option>
+                <option value="beginner">Beginner Friendly</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="professional">Professional</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Roles Needed</label>
+            <div class="requirements-list" id="requirementsList">
+              <div class="requirement-item">
+                <input type="text" class="form-input requirement-input" placeholder="e.g., Graphic Designer - Logo and branding experience">
+                <button type="button" class="remove-btn" onclick="removeRequirement(this)">
+                  <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                </button>
+              </div>
+            </div>
+            <button type="button" class="add-requirement" onclick="addRequirement()">
+              + Add Another Role
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <div class="form-section">
+          <h2 class="section-title">Additional Details</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Project Type</label>
+              <select class="form-select" required>
+                <option value="">What type of project is this?</option>
+                <option value="collaborative">Collaborative (No payment)</option>
+                <option value="profit-sharing">Profit Sharing</option>
+                <option value="paid">Paid Project</option>
+                <option value="volunteer">Volunteer/Charity</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Budget Range (Optional)</label>
+              <input type="text" class="form-input" placeholder="e.g., $500-1000, Revenue share, etc.">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Contact Information</label>
+            <input type="text" class="form-input" placeholder="How should applicants contact you? (Email, Discord, etc.)" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Additional Notes</label>
+            <textarea class="form-textarea" placeholder="Any additional information, requirements, or expectations for potential collaborators..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          🚀 Publish Project
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+
+      // Form submission
+      document.getElementById('uploadForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Show success message
+        alert('🎉 Project uploaded successfully! You can now manage it from your dashboard.');
+        
+        // Redirect to dashboard
+        window.location.href = 'user-dashboard-demo.html';
+      });
+
+      // File upload handling
+      document.getElementById('fileInput').addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+          const fileUpload = document.querySelector('.file-upload');
+          fileUpload.innerHTML = `
+            <i data-feather="check-circle" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #28a745;"></i>
+            <h3 style="color: #28a745;">${files.length} files selected</h3>
+            <p>Click to change files</p>
+          `;
+          feather.replace();
+        }
+      });
+    });
+
+    function addRequirement() {
+      const requirementsList = document.getElementById('requirementsList');
+      const newItem = document.createElement('div');
+      newItem.className = 'requirement-item';
+      newItem.innerHTML = `
+        <input type="text" class="form-input requirement-input" placeholder="e.g., UI/UX Designer - Mobile app design experience">
+        <button type="button" class="remove-btn" onclick="removeRequirement(this)">
+          <i data-feather="x" style="width: 16px; height: 16px;"></i>
+        </button>
+      `;
+      requirementsList.appendChild(newItem);
+      feather.replace();
+    }
+
+    function removeRequirement(button) {
+      const requirementsList = document.getElementById('requirementsList');
+      if (requirementsList.children.length > 1) {
+        button.parentElement.remove();
+      }
+    }
+  </script>
+</body>
+</html>

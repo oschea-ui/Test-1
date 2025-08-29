@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-particles"></div>
+  </div>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon"></span>
+          The Studio
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="discussions.html">Discussions</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="#showcase">Showcase</a>
+        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Creative <span class="gradient-text">Gallery</span></h1>
+          <p class="hero-subtitle">Curated masterpieces from our collective of visionaries</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Controls -->
+    <section class="gallery-controls container">
+      <div class="search-section">
+        <div class="search-bar-gallery">
+          <i data-feather="search"></i>
+          <input type="text" placeholder="Search by keyword, artist, or style..." id="gallery-search">
+        </div>
+      </div>
+      
+      <div class="filter-sort-section">
+        <div class="filter-chips">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="digital-art">Digital Art</button>
+          <button class="chip" data-filter="photography">Photography</button>
+          <button class="chip" data-filter="design">Design</button>
+          <button class="chip" data-filter="3d-art">3D Art</button>
+          <button class="chip" data-filter="illustration">Illustration</button>
+          <button class="chip" data-filter="mixed-media">Mixed Media</button>
+        </div>
+        
+        <select class="gallery-sort">
+          <option value="latest">Latest</option>
+          <option value="popular">Most Liked</option>
+          <option value="alphabetical">A-Z</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid-section container">
+      <div class="masonry-grid" id="gallery-grid">
+        
+        <!-- Artwork Item 1 -->
+        <div class="artwork-card" data-category="digital-art" data-title="neon dreams" data-artist="alex creator" data-likes="247">
+          <div class="artwork-image tall">
+            <div class="image-placeholder digital">
+              <i data-feather="layers"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Neon Dreams</h3>
+                <p>@alexcreator</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 247</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category digital-art">Digital Art</span>
+            <span class="date">Aug 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 2 -->
+        <div class="artwork-card" data-category="photography" data-title="urban solitude" data-artist="sarah lens" data-likes="189">
+          <div class="artwork-image medium">
+            <div class="image-placeholder photo">
+              <i data-feather="camera"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Urban Solitude</h3>
+                <p>@sarahlens</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 189</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category photography">Photography</span>
+            <span class="date">Aug 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 3 -->
+        <div class="artwork-card" data-category="design" data-title="minimal interface" data-artist="ryan design" data-likes="156">
+          <div class="artwork-image short">
+            <div class="image-placeholder design">
+              <i data-feather="layout"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Minimal Interface</h3>
+                <p>@ryandesign</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 156</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category design">Design</span>
+            <span class="date">Jul 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 4 -->
+        <div class="artwork-card" data-category="3d-art" data-title="geometric forms" data-artist="mike 3d" data-likes="203">
+          <div class="artwork-image tall">
+            <div class="image-placeholder three-d">
+              <i data-feather="box"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Geometric Forms</h3>
+                <p>@mike3d</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 203</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category 3d-art">3D Art</span>
+            <span class="date">Jul 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 5 -->
+        <div class="artwork-card" data-category="illustration" data-title="character study" data-artist="luna draw" data-likes="312">
+          <div class="artwork-image medium">
+            <div class="image-placeholder illustration">
+              <i data-feather="edit-3"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Character Study</h3>
+                <p>@lunadraw</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 312</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category illustration">Illustration</span>
+            <span class="date">Jun 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 6 -->
+        <div class="artwork-card" data-category="mixed-media" data-title="texture experiment" data-artist="nova art" data-likes="178">
+          <div class="artwork-image short">
+            <div class="image-placeholder mixed">
+              <i data-feather="aperture"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Texture Experiment</h3>
+                <p>@novaart</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 178</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category mixed-media">Mixed Media</span>
+            <span class="date">Jun 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 7 -->
+        <div class="artwork-card" data-category="digital-art" data-title="abstract flow" data-artist="zen digital" data-likes="234">
+          <div class="artwork-image medium">
+            <div class="image-placeholder digital">
+              <i data-feather="zap"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Abstract Flow</h3>
+                <p>@zendigital</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 234</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category digital-art">Digital Art</span>
+            <span class="date">May 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 8 -->
+        <div class="artwork-card" data-category="photography" data-title="golden hour" data-artist="kai photo" data-likes="289">
+          <div class="artwork-image tall">
+            <div class="image-placeholder photo">
+              <i data-feather="sun"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Golden Hour</h3>
+                <p>@kaiphoto</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 289</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category photography">Photography</span>
+            <span class="date">May 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 9 -->
+        <div class="artwork-card" data-category="design" data-title="brand identity" data-artist="ace brand" data-likes="167">
+          <div class="artwork-image short">
+            <div class="image-placeholder design">
+              <i data-feather="trending-up"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Brand Identity</h3>
+                <p>@acebrand</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 167</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category design">Design</span>
+            <span class="date">Apr 2025</span>
+          </div>
+        </div>
+
+        <!-- Artwork Item 10 -->
+        <div class="artwork-card" data-category="3d-art" data-title="space station" data-artist="cyber build" data-likes="345">
+          <div class="artwork-image tall">
+            <div class="image-placeholder three-d">
+              <i data-feather="globe"></i>
+            </div>
+            <div class="artwork-overlay">
+              <div class="overlay-content">
+                <h3>Space Station</h3>
+                <p>@cyberbuild</p>
+                <div class="artwork-stats">
+                  <span class="likes"><i data-feather="heart"></i> 345</span>
+                  <button class="expand-btn"><i data-feather="maximize-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <span class="category 3d-art">3D Art</span>
+            <span class="date">Apr 2025</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-section">
+        <button class="cta-button load-more-btn">Load More Masterpieces</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Artwork Modal -->
+  <div class="artwork-modal" id="artwork-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close"><i data-feather="x"></i></button>
+      <div class="modal-image">
+        <div class="modal-placeholder">
+          <i data-feather="image"></i>
+        </div>
+      </div>
+      <div class="modal-info">
+        <h2 class="modal-title">Artwork Title</h2>
+        <p class="modal-artist">@artist</p>
+        <p class="modal-description">This is a detailed description of the artwork, including the inspiration, technique, and creative process behind this piece.</p>
+        <div class="modal-stats">
+          <button class="like-btn"><i data-feather="heart"></i> <span>247</span></button>
+          <button class="share-btn"><i data-feather="share-2"></i> Share</button>
+          <button class="download-btn"><i data-feather="download"></i> Download</button>
+        </div>
+        <div class="modal-meta">
+          <span class="modal-category">Digital Art</span>
+          <span class="modal-date">August 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+
+      // Animated particles
+      createFloatingParticles();
+
+      // Filter functionality
+      const filterChips = document.querySelectorAll('.chip');
+      const artworkCards = document.querySelectorAll('.artwork-card');
+      const searchInput = document.getElementById('gallery-search');
+      const sortSelect = document.querySelector('.gallery-sort');
+      const modal = document.getElementById('artwork-modal');
+      const modalClose = document.querySelector('.modal-close');
+      const modalOverlay = document.querySelector('.modal-overlay');
+
+      // Animate cards on load
+      animateCardsOnLoad();
+
+      // Filter chips
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          filterChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          filterArtwork();
+        });
+      });
+
+      // Search functionality
+      searchInput.addEventListener('input', filterArtwork);
+
+      // Sort functionality
+      sortSelect.addEventListener('change', sortArtwork);
+
+      // Modal functionality
+      document.querySelectorAll('.expand-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openModal(e.target.closest('.artwork-card'));
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', closeModal);
+
+      // Like functionality
+      document.querySelectorAll('.likes').forEach(likeBtn => {
+        likeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleLike(e.target.closest('.likes'));
+        });
+      });
+
+      function filterArtwork() {
+        const activeFilter = document.querySelector('.chip.active').dataset.filter;
+        const searchTerm = searchInput.value.toLowerCase();
+
+        artworkCards.forEach((card, index) => {
+          const category = card.dataset.category;
+          const title = card.dataset.title.toLowerCase();
+          const artist = card.dataset.artist.toLowerCase();
+
+          const matchesFilter = activeFilter === 'all' || category === activeFilter;
+          const matchesSearch = title.includes(searchTerm) || artist.includes(searchTerm);
+
+          if (matchesFilter && matchesSearch) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0) scale(1)';
+            }, index * 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px) scale(0.95)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      }
+
+      function sortArtwork() {
+        const sortBy = sortSelect.value;
+        const grid = document.getElementById('gallery-grid');
+        const cards = Array.from(artworkCards);
+
+        cards.sort((a, b) => {
+          if (sortBy === 'popular') {
+            const aLikes = parseInt(a.dataset.likes);
+            const bLikes = parseInt(b.dataset.likes);
+            return bLikes - aLikes;
+          } else if (sortBy === 'alphabetical') {
+            return a.dataset.title.localeCompare(b.dataset.title);
+          }
+          // Default to latest (current order)
+          return 0;
+        });
+
+        cards.forEach(card => grid.appendChild(card));
+        animateCardsOnLoad();
+      }
+
+      function animateCardsOnLoad() {
+        artworkCards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px) scale(0.9)';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          }, index * 100);
+        });
+      }
+
+      function openModal(card) {
+        const title = card.dataset.title;
+        const artist = card.dataset.artist;
+        const likes = card.dataset.likes;
+        const category = card.dataset.category;
+
+        document.querySelector('.modal-title').textContent = title.charAt(0).toUpperCase() + title.slice(1);
+        document.querySelector('.modal-artist').textContent = '@' + artist.replace(' ', '');
+        document.querySelector('.like-btn span').textContent = likes;
+        document.querySelector('.modal-category').textContent = category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      function toggleLike(likeElement) {
+        const icon = likeElement.querySelector('i');
+        const isLiked = likeElement.classList.contains('liked');
+
+        if (isLiked) {
+          likeElement.classList.remove('liked');
+          icon.setAttribute('data-feather', 'heart');
+        } else {
+          likeElement.classList.add('liked');
+          icon.setAttribute('data-feather', 'heart');
+          likeElement.style.animation = 'heartBeat 0.6s ease';
+        }
+        feather.replace();
+      }
+
+      function createFloatingParticles() {
+        const particlesContainer = document.querySelector('.floating-particles');
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 20 + 's';
+          particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Parallax effect on scroll
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.animated-bg');
+        const speed = scrolled * 0.5;
+        parallax.style.transform = `translateY(${speed}px)`;
+      });
+    });
+  </script>
+</body>
+</html>

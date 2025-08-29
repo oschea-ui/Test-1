@@ -134,7 +134,7 @@ nav {
 }
 
 .gradient-text {
-    background: var(--gradient-2);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

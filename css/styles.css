@@ -1,6 +1,6 @@
 :root {
     --dark-bg: #0F0F0F;
-    --darker-bg: #050505;
+    --darker-bg: #050505; 
     --card-bg: #151515;
     --text-primary: #ffffff;
     --text-secondary: #EEEEEE;
@@ -318,19 +318,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animations */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(255, 51, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
-    }
-}
-
 /* Login Page Styles */
 .login-section {
     min-height: 100vh;
@@ -347,11 +334,6 @@ footer {
     width: 100%;
     max-width: 500px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.login-container.hidden {
-    display: none;
 }
 
 .login-container h1 {
@@ -361,8 +343,7 @@ footer {
     font-family: var(--font-heading);
 }
 
-/* Form Tabs - Only for login/signup container */
-#main-form-container .form-tabs {
+.form-tabs {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
@@ -394,7 +375,6 @@ footer {
     display: block;
 }
 
-/* Form Groups */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -419,13 +399,10 @@ footer {
     transition: border-color 0.3s ease;
 }
 
-/* Special styling for textarea in application form */
-#application-form textarea {
+.form-group textarea {
     min-height: 200px;
     resize: vertical;
     line-height: 1.6;
-    padding: 1.2rem;
-    margin-bottom: 1rem;
 }
 
 .form-group input:focus,
@@ -453,7 +430,6 @@ footer {
     background: linear-gradient(var(--accent-1), var(--accent-2));
 }
 
-/* Submit Button */
 .submit-btn {
     width: 100%;
     padding: 1rem;
@@ -462,8 +438,8 @@ footer {
     border-radius: 0.5rem;
     color: var(--text-primary);
     font-family: var(--font-heading);
-    font-size: 1rem;
     font-weight: 500;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 1rem;
@@ -474,7 +450,6 @@ footer {
     box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
 }
 
-/* Links */
 .forgot-password {
     display: block;
     text-align: center;
@@ -498,49 +473,106 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Apply Now Link */
-.apply-link {
+/* Apply Button Container */
+.apply-button-container {
     text-align: center;
     margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.apply-link a {
+.apply-btn {
+    background: transparent;
+    border: none;
     color: var(--text-secondary);
     font-style: italic;
     font-size: 0.9rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
     padding: 0.5rem 1rem;
-}
-
-.apply-link a:hover {
-    color: var(--accent-1);
-}
-
-/* Back to Login link in application form */
-#back-to-login {
-    display: inline-block;
-    margin-top: 1.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    text-decoration: none;
+    cursor: pointer;
     transition: color 0.3s ease;
+    font-family: var(--font-body);
+    font-weight: normal;
 }
 
-#back-to-login:hover {
+.apply-btn:hover {
     color: var(--accent-1);
 }
 
-/* Application Form Container specific styles */
-#application-container {
-    opacity: 0;
-    transform: translateY(20px);
+/* Animations */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 51, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
+    }
 }
 
-#application-container.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-message {
+        padding: 0 1rem;
+    }
 }
 
-/* [Previous responsive design CSS remains exactly the same] */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-message p {
+        font-size: 1.1rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-message .cta-text {
+        font-size: 1.75rem;
+    }
 
+    .login-container {
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .login-container h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}

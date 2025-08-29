@@ -8,32 +8,97 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="noise"></div>
   <header>
     <nav>
-      <h1 class="logo">The Studio</h1>
-      <a href="login.html" class="enter-btn">Enter</a>
+      <div class="logo">
+        <span class="logo-icon"></span>
+        The Studio
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#mission">Mission</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="enter-btn">Enter</a>
+      </div>
     </nav>
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
-      <h2>Welcome to The Studio</h2>
-      <p>A private collective for serious creatives. Invite-only. No noise, just value.</p>
-      <a href="login.html" class="cta-btn">Join the Movement</a>
+      <div class="hero-content">
+        <h1>Welcome to <span class="gradient-text">The Studio</span></h1>
+        <div class="hero-message">
+          <p>A private collective for serious creatives. Invite-only. No noise, just value.</p>
+          <p class="cta-text">Join the movement</p>
+          <a href="login.html" class="cta-button">Apply Now</a>
+          <p class="subtle-text">Exclusivity fuels creativity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="mission container">
+      <div class="section-grid">
+        <div class="text-content">
+          <h2>Our Mission</h2>
+          <div class="mission-text">
+            <p>We believe in building spaces where artists, thinkers, and innovators can focus deeply, free from distractions.</p>
+            <p class="highlight">No algorithms. No noise. Just creation.</p>
+          </div>
+        </div>
+        <div class="gradient-border">
+          <p>Inside The Studio, you’ll find curated discussions, tools for collaboration, and a shared sense of purpose. It’s not for everyone, but it might be for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features container">
+      <h2>Why Join?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i data-feather="shield"></i>
+          <h3>Privacy</h3>
+          <p>Your work, your ideas, protected from the noise of the outside world.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="users"></i>
+          <h3>Community</h3>
+          <p>Connect with handpicked creatives who share your standards.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="zap"></i>
+          <h3>Focus</h3>
+          <p>Work with intention in an environment designed for depth, not distraction.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <div class="contact-container">
+        <h2>Get in Touch</h2>
+        <p>Questions? Reach out to our team.</p>
+        <a href="mailto:info@thestudio.com" class="cta-button">Contact Us</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 The Studio. All rights reserved.</p>
-    <div class="socials">
-      <i data-feather="twitter"></i>
-      <i data-feather="instagram"></i>
-      <i data-feather="mail"></i>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
     </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
   </footer>
 
-  <!-- ✅ Scripts -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {

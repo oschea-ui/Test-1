@@ -15,7 +15,7 @@
     <div class="container">
         <main>
             <section class="login-section">
-                <div class="login-container">
+                <div class="login-container" id="main-form-container">
                     <h1>Welcome to <span class="gradient-text">The Studio</span></h1>
                     
                     <div class="login-form">
@@ -24,6 +24,7 @@
                             <button class="tab-btn" data-tab="signup">Sign up</button>
                         </div>
                         
+                        <!-- Login Form -->
                         <form id="login-form" class="tab-content active">
                             <div class="form-group">
                                 <label for="username">Username</label>
@@ -37,6 +38,7 @@
                             <a href="#" class="forgot-password">Forgot Password?</a>
                         </form>
                         
+                        <!-- Signup Form (for users with invite) -->
                         <form id="signup-form" class="tab-content">
                             <div class="form-group">
                                 <label for="signup-email">Email</label>
@@ -46,19 +48,34 @@
                                 <label for="signup-username">Desired Username</label>
                                 <input type="text" id="signup-username" name="username" required>
                             </div>
-                            <div class="form-group">
-                                <label for="signup-reason">Why are you here?</label>
-                                <textarea id="signup-reason" name="reason" maxlength="500" required></textarea>
-                            </div>
                             <div class="form-message">
                                 <p>Applications are currently being reviewed. Upon approval, you will receive an invitation email.</p>
                             </div>
                             <button type="submit" class="submit-btn">Submit Application</button>
                         </form>
                     </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <a href="#" style="font-style: italic; font-size: 14px;">Don't have a code? Apply Now</a>
+                    <div class="apply-link">
+                        <a href="#" id="show-application">Don't have a code? Apply Now</a>
                     </div>
+                </div>
+
+                <!-- Application Form (initially hidden) -->
+                <div class="login-container hidden" id="application-container">
+                    <h1>Apply to <span class="gradient-text">The Studio</span></h1>
+                    <form id="application-form">
+                        <div class="form-group">
+                            <label for="apply-email">Email</label>
+                            <input type="email" id="apply-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apply-reason">Why are you here?</label>
+                            <textarea id="apply-reason" name="reason" maxlength="500" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                        <div class="apply-link">
+                            <a href="#" id="back-to-login">Back to Login</a>
+                        </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -80,6 +97,24 @@
                 btn.classList.add('active');
                 document.getElementById(`${tab}-form`).classList.add('active');
             });
+        });
+
+        // Application form toggle
+        const mainContainer = document.getElementById('main-form-container');
+        const applicationContainer = document.getElementById('application-container');
+        const showApplicationBtn = document.getElementById('show-application');
+        const backToLoginBtn = document.getElementById('back-to-login');
+
+        showApplicationBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mainContainer.classList.add('hidden');
+            applicationContainer.classList.remove('hidden');
+        });
+
+        backToLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            applicationContainer.classList.add('hidden');
+            mainContainer.classList.remove('hidden');
         });
     </script>
 </body>

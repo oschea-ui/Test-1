@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon"></span>
+          The Studio
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="#discussions">Discussions</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#showcase">Showcase</a>
+        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Projects Hero -->
+    <section class="projects-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Creative <span class="gradient-text">Projects</span></h1>
+          <p class="hero-subtitle">Curated work from our collective of creators</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="projects-filter container">
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="development">Development</button>
+        <button class="filter-btn" data-filter="art">Art</button>
+        <button class="filter-btn" data-filter="photography">Photography</button>
+        <button class="filter-btn" data-filter="music">Music</button>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid container">
+      <div class="project-card" data-category="design">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="layers"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Brand Identity System</h3>
+          <p>Complete visual identity for a tech startup</p>
+          <div class="project-meta">
+            <span class="category">Design</span>
+            <span class="date">Dec 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="development">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="code"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Creative Portfolio Platform</h3>
+          <p>Modern web platform for showcasing creative work</p>
+          <div class="project-meta">
+            <span class="category">Development</span>
+            <span class="date">Nov 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="art">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="image"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Digital Art Collection</h3>
+          <p>Experimental digital artworks exploring form and color</p>
+          <div class="project-meta">
+            <span class="category">Art</span>
+            <span class="date">Oct 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="photography">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="camera"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Urban Landscapes</h3>
+          <p>Street photography capturing city life and architecture</p>
+          <div class="project-meta">
+            <span class="category">Photography</span>
+            <span class="date">Sep 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="music">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="music"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Ambient Soundscapes</h3>
+          <p>Atmospheric compositions for meditation and focus</p>
+          <div class="project-meta">
+            <span class="category">Music</span>
+            <span class="date">Aug 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="design">
+        <div class="project-image">
+          <div class="project-placeholder">
+            <i data-feather="smartphone"></i>
+          </div>
+          <div class="project-overlay">
+            <button class="view-project-btn">View Project</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Mobile App Interface</h3>
+          <p>Clean and intuitive design for productivity app</p>
+          <div class="project-meta">
+            <span class="category">Design</span>
+            <span class="date">Jul 2024</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Load More -->
+    <section class="load-more-section container">
+      <button class="cta-button load-more-btn">Load More Projects</button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+
+      // Filter functionality
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterBtns.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          btn.classList.add('active');
+
+          const filter = btn.dataset.filter;
+
+          // Filter project cards
+          projectCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+              card.style.animation = 'fadeIn 0.5s ease';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Project card hover effects
+      projectCards.forEach(card => {
+        const overlay = card.querySelector('.project-overlay');
+        const viewBtn = card.querySelector('.view-project-btn');
+
+        card.addEventListener('mouseenter', () => {
+          overlay.style.opacity = '1';
+        });
+
+        card.addEventListener('mouseleave', () => {
+          overlay.style.opacity = '0';
+        });
+
+        viewBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Add your project view logic here
+          console.log('View project clicked');
+        });
+      });
+    });
+
+    // Add fadeIn animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

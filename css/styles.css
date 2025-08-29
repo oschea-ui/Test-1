@@ -579,3 +579,253 @@ footer {
         display: none;
     }
 }
+/* Add these styles to your existing CSS file */
+
+/* Projects Page Styles */
+.projects-hero {
+    padding: 8rem 0 4rem;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.projects-hero .hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Filter Section */
+.projects-filter {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--card-bg);
+    color: var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-1);
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background: var(--gradient-1);
+    border-color: transparent;
+    color: var(--text-primary);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0 4rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.project-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--card-bg) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.project-placeholder i {
+    width: 60px;
+    height: 60px;
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.view-project-btn {
+    background: var(--gradient-1);
+    border: none;
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.view-project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category {
+    background: var(--darker-bg);
+    color: var(--accent-1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.date {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Load More Section */
+.load-more-section {
+    text-align: center;
+    padding: 2rem 0 4rem;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: 2px solid var(--accent-1);
+    color: var(--accent-1);
+}
+
+.load-more-btn:hover {
+    background: var(--gradient-1);
+    border-color: transparent;
+    color: var(--text-primary);
+}
+
+/* Responsive Design for Projects */
+@media (max-width: 1024px) {
+    .projects-hero .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-hero .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .filter-tabs {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .project-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .projects-hero {
+        padding: 6rem 0 2rem;
+    }
+    
+    .project-info {
+        padding: 1rem;
+    }
+}

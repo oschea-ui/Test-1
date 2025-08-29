@@ -22,7 +22,6 @@
                         <div class="form-tabs">
                             <button class="tab-btn active" data-tab="login">Login</button>
                             <button class="tab-btn" data-tab="signup">Sign up</button>
-                            <button class="tab-btn" data-tab="apply">Apply</button>
                         </div>
                         
                         <!-- Login Form -->
@@ -67,6 +66,11 @@
                             </div>
                             <button type="submit" class="submit-btn">Submit Application</button>
                         </form>
+
+                        <!-- Apply Now Button -->
+                        <div class="apply-button-container">
+                            <button class="tab-btn apply-btn" data-tab="apply">Don't have a code? Apply Now</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -83,10 +87,14 @@
             btn.addEventListener('click', () => {
                 const tab = btn.dataset.tab;
                 
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
+                // Update active states for top tabs
+                document.querySelectorAll('.form-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                if (tab === 'login' || tab === 'signup') {
+                    btn.classList.add('active');
+                }
                 
-                btn.classList.add('active');
+                // Hide all forms and show the selected one
+                tabContents.forEach(c => c.classList.remove('active'));
                 document.getElementById(`${tab}-form`).classList.add('active');
             });
         });

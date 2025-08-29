@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discussions – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon"></span>
+          The Studio
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="discussions.html">Discussions</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#showcase">Showcase</a>
+        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Discussions Hero -->
+    <section class="discussions-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Community <span class="gradient-text">Discussions</span></h1>
+          <p class="hero-subtitle">Share ideas, get feedback, and connect with fellow creators</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter and Search Section -->
+    <section class="discussions-controls container">
+      <div class="filter-section">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="popular">Popular</button>
+          <button class="filter-btn" data-filter="recent">Recent</button>
+          <button class="filter-btn" data-filter="questions">Questions</button>
+          <button class="filter-btn" data-filter="ideas">Ideas</button>
+          <button class="filter-btn" data-filter="feedback">Feedback</button>
+        </div>
+        <div class="search-sort-section">
+          <div class="search-bar">
+            <i data-feather="search"></i>
+            <input type="text" placeholder="Search discussions...">
+          </div>
+          <select class="sort-dropdown">
+            <option value="votes">Most Voted</option>
+            <option value="recent">Most Recent</option>
+            <option value="comments">Most Discussed</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Voted Posts -->
+    <section class="top-voted-section container">
+      <h2 class="section-title">🔥 Top Voted This Week</h2>
+      <div class="top-voted-scroll">
+        <div class="top-voted-card">
+          <div class="vote-count">+147</div>
+          <div class="card-content">
+            <h3>The Future of Creative AI Tools</h3>
+            <div class="card-meta">
+              <span class="author">@alexcreator</span>
+              <span class="category idea">Idea</span>
+              <span class="comments">32 comments</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-voted-card">
+          <div class="vote-count">+123</div>
+          <div class="card-content">
+            <h3>Portfolio Review: Modern Web Design Trends</h3>
+            <div class="card-meta">
+              <span class="author">@designguru</span>
+              <span class="category feedback">Feedback</span>
+              <span class="comments">28 comments</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-voted-card">
+          <div class="vote-count">+98</div>
+          <div class="card-content">
+            <h3>How to Build a Sustainable Creative Business</h3>
+            <div class="card-meta">
+              <span class="author">@entrepreneur</span>
+              <span class="category question">Question</span>
+              <span class="comments">45 comments</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-voted-card">
+          <div class="vote-count">+87</div>
+          <div class="card-content">
+            <h3>Color Theory Deep Dive: Psychology in Design</h3>
+            <div class="card-meta">
+              <span class="author">@colormaster</span>
+              <span class="category idea">Idea</span>
+              <span class="comments">19 comments</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-voted-card">
+          <div class="vote-count">+76</div>
+          <div class="card-content">
+            <h3>Best Practices for Creative Collaboration</h3>
+            <div class="card-meta">
+              <span class="author">@teamplayer</span>
+              <span class="category feedback">Feedback</span>
+              <span class="comments">23 comments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Discussions Feed -->
+    <section class="discussions-feed container">
+      <h2 class="section-title">💬 Recent Discussions</h2>
+      <div class="feed-container">
+        
+        <article class="discussion-post" data-category="question">
+          <div class="post-votes">
+            <button class="vote-btn upvote">
+              <i data-feather="chevron-up"></i>
+            </button>
+            <span class="vote-count">24</span>
+            <button class="vote-btn downvote">
+              <i data-feather="chevron-down"></i>
+            </button>
+          </div>
+          <div class="post-content">
+            <div class="post-header">
+              <div class="user-info">
+                <div class="avatar">JD</div>
+                <div class="user-details">
+                  <span class="username">@johndoe</span>
+                  <span class="timestamp">2 hours ago</span>
+                </div>
+              </div>
+              <span class="category-tag question">Question</span>
+            </div>
+            <h3 class="post-title">What's your workflow for creative brainstorming?</h3>
+            <p class="post-preview">I'm looking to improve my creative process and would love to hear how other creators approach ideation and concept development...</p>
+            <div class="post-footer">
+              <div class="post-stats">
+                <span class="comments-count">
+                  <i data-feather="message-circle"></i>
+                  12 comments
+                </span>
+              </div>
+              <button class="join-discussion-btn">Join Discussion</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="discussion-post" data-category="idea">
+          <div class="post-votes">
+            <button class="vote-btn upvote">
+              <i data-feather="chevron-up"></i>
+            </button>
+            <span class="vote-count">56</span>
+            <button class="vote-btn downvote">
+              <i data-feather="chevron-down"></i>
+            </button>
+          </div>
+          <div class="post-content">
+            <div class="post-header">
+              <div class="user-info">
+                <div class="avatar">SM</div>
+                <div class="user-details">
+                  <span class="username">@sarahm</span>
+                  <span class="timestamp">4 hours ago</span>
+                </div>
+              </div>
+              <span class="category-tag idea">Idea</span>
+            </div>
+            <h3 class="post-title">Interactive Art Installation: Motion-Reactive Sculptures</h3>
+            <p class="post-preview">Concept for public art pieces that respond to pedestrian movement with color and sound. Using sensors and LED arrays to create dynamic experiences...</p>
+            <div class="post-footer">
+              <div class="post-stats">
+                <span class="comments-count">
+                  <i data-feather="message-circle"></i>
+                  8 comments
+                </span>
+              </div>
+              <button class="join-discussion-btn">Join Discussion</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="discussion-post" data-category="feedback">
+          <div class="post-votes">
+            <button class="vote-btn upvote">
+              <i data-feather="chevron-up"></i>
+            </button>
+            <span class="vote-count">31</span>
+            <button class="vote-btn downvote">
+              <i data-feather="chevron-down"></i>
+            </button>
+          </div>
+          <div class="post-content">
+            <div class="post-header">
+              <div class="user-info">
+                <div class="avatar">RC</div>
+                <div class="user-details">
+                  <span class="username">@ryanc</span>
+                  <span class="timestamp">6 hours ago</span>
+                </div>
+              </div>
+              <span class="category-tag feedback">Feedback</span>
+            </div>
+            <h3 class="post-title">Logo Design Critique - Tech Startup Branding</h3>
+            <p class="post-preview">Working on a logo for a fintech startup. Looking for honest feedback on these three concepts. Which direction feels most trustworthy?</p>
+            <div class="post-footer">
+              <div class="post-stats">
+                <span class="comments-count">
+                  <i data-feather="message-circle"></i>
+                  15 comments
+                </span>
+              </div>
+              <button class="join-discussion-btn">Join Discussion</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="discussion-post" data-category="question">
+          <div class="post-votes">
+            <button class="vote-btn upvote">
+              <i data-feather="chevron-up"></i>
+            </button>
+            <span class="vote-count">18</span>
+            <button class="vote-btn downvote">
+              <i data-feather="chevron-down"></i>
+            </button>
+          </div>
+          <div class="post-content">
+            <div class="post-header">
+              <div class="user-info">
+                <div class="avatar">LK</div>
+                <div class="user-details">
+                  <span class="username">@lisakim</span>
+                  <span class="timestamp">8 hours ago</span>
+                </div>
+              </div>
+              <span class="category-tag question">Question</span>
+            </div>
+            <h3 class="post-title">Best tools for collaborative design projects?</h3>
+            <p class="post-preview">My team is growing and we need better tools for real-time collaboration. What platforms do you recommend for design handoffs and feedback?</p>
+            <div class="post-footer">
+              <div class="post-stats">
+                <span class="comments-count">
+                  <i data-feather="message-circle"></i>
+                  22 comments
+                </span>
+              </div>
+              <button class="join-discussion-btn">Join Discussion</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="discussion-post" data-category="idea">
+          <div class="post-votes">
+            <button class="vote-btn upvote">
+              <i data-feather="chevron-up"></i>
+            </button>
+            <span class="vote-count">43</span>
+            <button class="vote-btn downvote">
+              <i data-feather="chevron-down"></i>
+            </button>
+          </div>
+          <div class="post-content">
+            <div class="post-header">
+              <div class="user-info">
+                <div class="avatar">MT</div>
+                <div class="user-details">
+                  <span class="username">@marktech</span>
+                  <span class="timestamp">10 hours ago</span>
+                </div>
+              </div>
+              <span class="category-tag idea">Idea</span>
+            </div>
+            <h3 class="post-title">AR Portfolio Viewer - Showcase Work in 3D Space</h3>
+            <p class="post-preview">Imagine viewing someone's portfolio in augmented reality. 3D models, interactive demos, spatial design layouts. The future of creative presentation?</p>
+            <div class="post-footer">
+              <div class="post-stats">
+                <span class="comments-count">
+                  <i data-feather="message-circle"></i>
+                  7 comments
+                </span>
+              </div>
+              <button class="join-discussion-btn">Join Discussion</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      
+      <!-- Load More -->
+      <div class="load-more-section">
+        <button class="cta-button load-more-btn">Load More Discussions</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+
+      // Filter functionality
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const discussionPosts = document.querySelectorAll('.discussion-post');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.dataset.filter;
+
+          discussionPosts.forEach(post => {
+            if (filter === 'all' || post.dataset.category === filter) {
+              post.style.display = 'flex';
+              post.style.animation = 'fadeIn 0.5s ease';
+            } else {
+              post.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Voting functionality
+      const voteBtns = document.querySelectorAll('.vote-btn');
+      voteBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isUpvote = btn.classList.contains('upvote');
+          const voteCountSpan = btn.parentElement.querySelector('.vote-count');
+          let currentVotes = parseInt(voteCountSpan.textContent);
+
+          // Toggle vote
+          if (btn.classList.contains('voted')) {
+            btn.classList.remove('voted');
+            currentVotes += isUpvote ? -1 : 1;
+          } else {
+            // Remove other vote if exists
+            const otherBtn = btn.parentElement.querySelector(isUpvote ? '.downvote' : '.upvote');
+            if (otherBtn.classList.contains('voted')) {
+              otherBtn.classList.remove('voted');
+              currentVotes += isUpvote ? 2 : -2;
+            } else {
+              currentVotes += isUpvote ? 1 : -1;
+            }
+            btn.classList.add('voted');
+          }
+
+          voteCountSpan.textContent = currentVotes;
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        discussionPosts.forEach(post => {
+          const title = post.querySelector('.post-title').textContent.toLowerCase();
+          const preview = post.querySelector('.post-preview').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm) || preview.includes(searchTerm)) {
+            post.style.display = 'flex';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+      });
+
+      // Sort functionality
+      const sortDropdown = document.querySelector('.sort-dropdown');
+      sortDropdown.addEventListener('change', (e) => {
+        const sortBy = e.target.value;
+        const feedContainer = document.querySelector('.feed-container');
+        const posts = Array.from(discussionPosts);
+
+        posts.sort((a, b) => {
+          if (sortBy === 'votes') {
+            const aVotes = parseInt(a.querySelector('.vote-count').textContent);
+            const bVotes = parseInt(b.querySelector('.vote-count').textContent);
+            return bVotes - aVotes;
+          } else if (sortBy === 'comments') {
+            const aComments = parseInt(a.querySelector('.comments-count').textContent.match(/\d+/)[0]);
+            const bComments = parseInt(b.querySelector('.comments-count').textContent.match(/\d+/)[0]);
+            return bComments - aComments;
+          }
+          // Default to recent (current order)
+          return 0;
+        });
+
+        posts.forEach(post => feedContainer.appendChild(post));
+      });
+    });
+  </script>
+</body>
+</html>

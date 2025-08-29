@@ -528,3 +528,215 @@ footer {
         display: none;
     }
 }
+/* Login Page Styles */
+.login-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.login-container {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.login-container.hidden {
+    display: none;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+}
+
+/* Form Tabs - Only for login/signup container */
+#main-form-container .form-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid var(--accent-1);
+    color: var(--text-primary);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: var(--gradient-1);
+    border-color: transparent;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: var(--darker-bg);
+    border: 2px solid var(--card-bg);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Special styling for textarea in application form */
+#application-form textarea {
+    min-height: 200px;
+    resize: vertical;
+    line-height: 1.6;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-1);
+}
+
+/* Custom scrollbar for textarea */
+.form-group textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-group textarea::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+    border-radius: 4px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb {
+    background: var(--accent-1);
+    border-radius: 4px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--accent-1), var(--accent-2));
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
+}
+
+/* Links */
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--accent-1);
+}
+
+.form-message {
+    background: var(--darker-bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Apply Now Link */
+.apply-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.apply-link a {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+.apply-link a:hover {
+    color: var(--accent-1);
+}
+
+/* Back to Login link in application form */
+#back-to-login {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#back-to-login:hover {
+    color: var(--accent-1);
+}
+
+/* Application Form Container specific styles */
+#application-container {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#application-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* [Previous responsive design CSS remains exactly the same] */

@@ -8,54 +8,109 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="noise"></div>
-  <main class="auth-container">
-    <div class="auth-box">
-      <h2>Access The Studio</h2>
-      <div class="tabs">
-        <button class="tab active" data-target="login">Login</button>
-        <button class="tab" data-target="signup">Signup</button>
-        <button class="tab" data-target="apply">Apply</button>
+  <header>
+    <nav>
+      <div class="logo">
+        <span class="logo-icon"></span>
+        The Studio
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html" class="enter-btn">Enter</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="login-section">
+    <div class="login-container">
+      <h1>Access The Studio</h1>
+
+      <div class="form-tabs">
+        <button class="tab-btn active" data-target="login">Login</button>
+        <button class="tab-btn" data-target="signup">Signup</button>
+        <button class="tab-btn" data-target="apply">Apply</button>
       </div>
 
-      <form id="login" class="form active">
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-      </form>
+      <!-- Login -->
+      <div id="login" class="tab-content active">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required>
+        </div>
+        <button class="submit-btn">Login</button>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </div>
 
-      <form id="signup" class="form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Invite Code" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Signup</button>
-      </form>
+      <!-- Signup -->
+      <div id="signup" class="tab-content">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Invite Code</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required>
+        </div>
+        <button class="submit-btn">Signup</button>
+      </div>
 
-      <form id="apply" class="form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Why do you want to join?" required></textarea>
-        <button type="submit">Apply</button>
-      </form>
+      <!-- Apply -->
+      <div id="apply" class="tab-content">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Why do you want to join?</label>
+          <textarea required></textarea>
+        </div>
+        <button class="submit-btn">Apply</button>
+      </div>
     </div>
   </main>
 
-  <!-- ✅ Scripts -->
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Feather icons
       feather.replace();
 
       // Tab switching
-      const tabs = document.querySelectorAll(".tab");
-      const forms = document.querySelectorAll(".form");
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
 
       tabs.forEach(tab => {
         tab.addEventListener("click", () => {
           tabs.forEach(t => t.classList.remove("active"));
-          forms.forEach(f => f.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
 
           tab.classList.add("active");
           document.getElementById(tab.dataset.target).classList.add("active");

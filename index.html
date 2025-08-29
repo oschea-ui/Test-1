@@ -16,7 +16,15 @@
           The Studio
         </a>
       </div>
-     <div class="nav-links">
+      
+      <!-- Mobile hamburger button -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+     <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
         <a href="discussions.html">Discussions</a>
@@ -106,6 +114,32 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       feather.replace();
+      
+      // Mobile menu toggle functionality
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const navLinks = document.getElementById('navLinks');
+      
+      mobileMenuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a link
+      const navLinkItems = navLinks.querySelectorAll('a');
+      navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+          navLinks.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        }
+      });
     });
   </script>
 </body>

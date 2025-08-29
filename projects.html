@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brand Identity System – The Studio</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <link rel="stylesheet" href="css/project-detail.css"/>
+  <title>Projects – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -35,257 +34,389 @@
   </header>
 
   <main>
-    <div class="container project-detail">
-      <a href="projects.html" class="back-btn">
-        <i data-feather="arrow-left"></i>
-        Back to Projects
-      </a>
+    <!-- Projects Hero -->
+    <section class="projects-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Creative <span class="gradient-text">Projects</span></h1>
+          <p class="hero-subtitle">Upload Your Ideas. Join a Team. Build Together.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="upload-project-demo.html" class="cta-button">
+            <i data-feather="plus"></i>
+            Start New Project
+          </a>
+          <a href="user-dashboard-demo.html" class="cta-button secondary">
+            <i data-feather="grid"></i>
+            My Dashboard
+          </a>
+        </div>
+      </div>
+    </section>
 
-      <!-- Project Header -->
-      <section class="project-header">
-        <div class="project-header-content">
-          <div class="project-meta-info">
-            <div class="meta-item">
-              <i data-feather="tag"></i>
-              <span>Design</span>
+    <!-- Filter Section -->
+    <section class="projects-filter container">
+      <div class="filter-controls">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="development">Development</button>
+          <button class="filter-btn" data-filter="art">Art</button>
+          <button class="filter-btn" data-filter="photography">Photography</button>
+          <button class="filter-btn" data-filter="music">Music</button>
+        </div>
+        <div class="search-sort-section">
+          <div class="search-bar">
+            <i data-feather="search"></i>
+            <input type="text" placeholder="Search projects..." id="projectSearch">
+          </div>
+          <select class="sort-dropdown" id="projectSort">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="members">Most Team Members</option>
+            <option value="alphabetical">A–Z</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid-section container">
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Project Card 1 -->
+        <div class="project-card" data-category="design" data-title="brand identity system" data-members="2">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="layers"></i>
             </div>
-            <div class="meta-item">
-              <i data-feather="users"></i>
-              <span>2/5 members</span>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
             </div>
-            <div class="meta-item">
-              <i data-feather="clock"></i>
-              <span>6-8 weeks</span>
-            </div>
-            <div class="meta-item">
-              <i data-feather="calendar"></i>
-              <span>Posted Aug 25, 2025</span>
+            <div class="project-status">
+              <span class="status-badge open">Open for Applications</span>
             </div>
           </div>
-          <h1>Brand Identity System</h1>
-          <p class="project-subtitle">Complete visual identity for a tech startup focusing on sustainable solutions</p>
-        </div>
-      </section>
-
-      <!-- Project Gallery -->
-      <section class="project-gallery">
-        <div class="gallery-item gallery-main">
-          <i data-feather="image"></i>
-        </div>
-        <div class="gallery-item">
-          <i data-feather="layers"></i>
-        </div>
-        <div class="gallery-item">
-          <i data-feather="palette"></i>
-        </div>
-        <div class="gallery-item">
-          <i data-feather="type"></i>
-        </div>
-        <div class="gallery-item">
-          <i data-feather="layout"></i>
-        </div>
-      </section>
-
-      <!-- Main Content -->
-      <div class="project-content">
-        <div class="project-main">
-          <!-- Overview -->
-          <section class="content-section">
-            <h2 class="section-title">Project Overview</h2>
-            <p>We're building a complete brand identity system for GreenTech Solutions, an innovative startup that's developing sustainable technology for urban environments. This project involves creating everything from the core logo and visual identity to comprehensive brand guidelines that will establish their presence in the competitive clean-tech market.</p>
-            <p>The brand needs to communicate innovation, sustainability, and trustworthiness while appealing to both B2B clients and environmentally conscious consumers. We're looking for talented designers who can help bring this vision to life through thoughtful design decisions and collaborative teamwork.</p>
-
-            <h3 class="subsection-title">What We're Building</h3>
-            <ul class="overview-list">
-              <li>Primary logo and brand mark variations</li>
-              <li>Complete color palette and typography system</li>
-              <li>Business card and stationery designs</li>
-              <li>Website mockups and UI elements</li>
-              <li>Brand guidelines document</li>
-              <li>Social media templates</li>
-            </ul>
-          </section>
-
-          <!-- Requirements -->
-          <section class="content-section">
-            <h2 class="section-title">What We're Looking For</h2>
-            <ul class="requirements-list">
-              <li>
-                <strong>Graphic Designer</strong> – Experience with logo design and brand identity systems. Proficiency in Adobe Creative Suite (Illustrator, Photoshop, InDesign).
-              </li>
-              <li>
-                <strong>UI/UX Designer</strong> – Knowledge of web design principles and experience creating cohesive digital brand experiences. Figma or Sketch experience preferred.
-              </li>
-              <li>
-                <strong>Brand Strategist</strong> – Understanding of market positioning and brand development. Experience with brand guidelines and style guide creation.
-              </li>
-            </ul>
-          </section>
-
-          <!-- Timeline & Updates -->
-          <section class="content-section">
-            <h2 class="section-title">Project Timeline & Updates</h2>
-            <div class="updates-timeline">
-              <div class="timeline-item">
-                <h4>Week 1–2: Research & Discovery</h4>
-                <p>Market research, competitor analysis, and initial concept development</p>
-                <small class="timeline-dates">Aug 25 – Sep 8</small>
-              </div>
-              <div class="timeline-item">
-                <h4>Week 3–4: Logo & Visual Identity</h4>
-                <p>Primary logo design, color palette, and typography selection</p>
-                <small class="timeline-dates">Sep 9 – Sep 22</small>
-              </div>
-              <div class="timeline-item">
-                <h4>Week 5–6: Brand Applications</h4>
-                <p>Business cards, stationery, and digital asset creation</p>
-                <small class="timeline-dates">Sep 23 – Oct 6</small>
-              </div>
-              <div class="timeline-item">
-                <h4>Week 7–8: Guidelines & Finalization</h4>
-                <p>Complete brand guidelines document and final deliverables</p>
-                <small class="timeline-dates">Oct 7 – Oct 20</small>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Brand Identity System</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">SC</div>
+                <span>Sarah Chen</span>
               </div>
             </div>
-          </section>
-
-          <!-- Team -->
-          <section class="content-section">
-            <h2 class="section-title">Current Team</h2>
-            <div class="team-members">
-              <div class="team-member">
-                <div class="member-avatar">SC</div>
-                <h4 class="member-name">Sarah Chen</h4>
-                <p class="member-role">Project Lead</p>
-                <p class="member-skill">Brand Strategy</p>
+            <p>Complete visual identity for a tech startup focusing on sustainable solutions</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 2/5 members</span>
+                <span class="stat"><i data-feather="clock"></i> 6–8 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 25</span>
               </div>
-              <div class="team-member">
-                <div class="member-avatar">MK</div>
-                <h4 class="member-name">Marcus Kim</h4>
-                <p class="member-role">Creative Director</p>
-                <p class="member-skill">Visual Design</p>
-              </div>
-              <div class="team-member team-open">
-                <div class="member-avatar open-slot">
-                  <i data-feather="plus"></i>
-                </div>
-                <h4 class="member-name muted">You?</h4>
-                <p class="member-role">Open Position</p>
+              <div class="project-tags">
+                <span class="tag">Branding</span>
+                <span class="tag">Logo Design</span>
+                <span class="tag">Typography</span>
               </div>
             </div>
-          </section>
+          </div>
         </div>
 
-        <!-- Sidebar -->
-        <aside class="project-sidebar">
-          <section class="content-section application-section">
-            <h2 class="section-title">Apply to Join Team</h2>
-
-            <form class="application-form" id="applicationForm">
-              <div class="form-group">
-                <label class="form-label" for="name">Full Name</label>
-                <input type="text" id="name" name="name" class="form-input" required placeholder="Enter your full name"/>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="role">Role You're Applying For</label>
-                <select id="role" name="role" class="form-select" required>
-                  <option value="">Select a role...</option>
-                  <option value="graphic-designer">Graphic Designer</option>
-                  <option value="ui-designer">UI/UX Designer</option>
-                  <option value="brand-strategist">Brand Strategist</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="availability">Availability</label>
-                <select id="availability" name="availability" class="form-select" required>
-                  <option value="">How much time can you commit?</option>
-                  <option value="5-10-hours">5–10 hours/week</option>
-                  <option value="10-20-hours">10–20 hours/week</option>
-                  <option value="20-30-hours">20–30 hours/week</option>
-                  <option value="full-time">Full-time commitment</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="portfolio">Portfolio URL (Optional)</label>
-                <input type="url" id="portfolio" name="portfolio" class="form-input" placeholder="https://yourportfolio.com"/>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="coverLetter">Cover Letter</label>
-                <textarea id="coverLetter" name="coverLetter" class="form-textarea" required placeholder="Tell us why you're interested and what experience you bring..."></textarea>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="skills">Relevant Skills & Experience</label>
-                <textarea id="skills" name="skills" class="form-textarea" placeholder="List your skills, tools you use, and similar projects you've worked on..."></textarea>
-              </div>
-
-              <button type="submit" class="submit-btn" id="applyBtn">
-                <i data-feather="send"></i>
-                Submit Application
-              </button>
-            </form>
-          </section>
-
-          <section class="content-section project-stats-block">
-            <h3 class="section-title">Project Stats</h3>
-            <div class="project-stats-grid">
-              <div class="stat-row">
-                <span>Applications</span>
-                <span class="stat-value accent">12</span>
-              </div>
-              <div class="stat-row">
-                <span>Views</span>
-                <span class="stat-value accent">247</span>
-              </div>
-              <div class="stat-row">
-                <span>Bookmarked</span>
-                <span class="stat-value accent">18</span>
-              </div>
-              <div class="stat-row">
-                <span>Created</span>
-                <span class="stat-value muted">5 days ago</span>
-              </div>
+        <!-- Project Card 2 -->
+        <div class="project-card" data-category="development" data-title="creative portfolio platform" data-members="3">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="code"></i>
             </div>
-
-            <div class="bookmark-row">
-              <button class="bookmark-btn" id="bookmarkBtn" type="button" aria-pressed="false">
-                <i data-feather="bookmark"></i>
-                Bookmark Project
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
               </button>
             </div>
-          </section>
-        </aside>
+            <div class="project-status">
+              <span class="status-badge progress">In Progress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Creative Portfolio Platform</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">MR</div>
+                <span>Mike Rodriguez</span>
+              </div>
+            </div>
+            <p>Modern web platform for showcasing creative work with interactive galleries</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 3/4 members</span>
+                <span class="stat"><i data-feather="clock"></i> 10–12 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 20</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card" data-category="art" data-title="digital art collection" data-members="1">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="image"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge recruiting">Recruiting</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Digital Art Collection</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">AK</div>
+                <span>Alex Kim</span>
+              </div>
+            </div>
+            <p>Experimental digital artworks exploring the intersection of technology and nature</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 1/3 members</span>
+                <span class="stat"><i data-feather="clock"></i> 4–6 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 18</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Digital Art</span>
+                <span class="tag">Generative</span>
+                <span class="tag">3D</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="project-card" data-category="photography" data-title="urban landscapes" data-members="4">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="camera"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge progress">In Progress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Urban Landscapes</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">JL</div>
+                <span>Jordan Lee</span>
+              </div>
+            </div>
+            <p>Street photography series capturing the beauty and chaos of metropolitan life</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 4/5 members</span>
+                <span class="stat"><i data-feather="clock"></i> 8–10 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 15</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Photography</span>
+                <span class="tag">Street Art</span>
+                <span class="tag">Documentary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div class="project-card" data-category="music" data-title="ambient soundscapes" data-members="2">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="music"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge open">Open for Applications</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Ambient Soundscapes</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">EM</div>
+                <span>Emma Martinez</span>
+              </div>
+            </div>
+            <p>Atmospheric compositions for meditation, focus, and creative work environments</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 2/4 members</span>
+                <span class="stat"><i data-feather="clock"></i> 6–8 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 12</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Ambient</span>
+                <span class="tag">Meditation</span>
+                <span class="tag">Sound Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div class="project-card" data-category="design" data-title="mobile app interface" data-members="5">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="smartphone"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge completed">Completed</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Mobile App Interface</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">TR</div>
+                <span>Taylor Rodriguez</span>
+              </div>
+            </div>
+            <p>Clean and intuitive UI/UX design for a productivity and wellness mobile application</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 5/5 members</span>
+                <span class="stat"><i data-feather="clock"></i> Completed</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 5</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Mobile</span>
+                <span class="tag">Figma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 7 -->
+        <div class="project-card" data-category="development" data-title="ai art generator" data-members="2">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="cpu"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge recruiting">Recruiting</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>AI Art Generator</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">DS</div>
+                <span>David Singh</span>
+              </div>
+            </div>
+            <p>Machine learning tool for generating unique artistic styles and creative compositions</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 2/6 members</span>
+                <span class="stat"><i data-feather="clock"></i> 12–16 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Aug 1</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">AI/ML</span>
+                <span class="tag">Python</span>
+                <span class="tag">TensorFlow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 8 -->
+        <div class="project-card" data-category="art" data-title="interactive sculpture" data-members="3">
+          <div class="project-image">
+            <div class="project-placeholder">
+              <i data-feather="box"></i>
+            </div>
+            <div class="project-overlay">
+              <button class="view-project-btn" onclick="window.location.href='project-detail.html'">
+                <i data-feather="eye"></i>
+                View Project
+              </button>
+            </div>
+            <div class="project-status">
+              <span class="status-badge open">Open for Applications</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Interactive Sculpture</h3>
+              <div class="project-creator">
+                <div class="creator-avatar">MK</div>
+                <span>Maya Kumar</span>
+              </div>
+            </div>
+            <p>Motion-responsive art installation combining physical sculpture with digital elements</p>
+            <div class="project-details">
+              <div class="project-stats">
+                <span class="stat"><i data-feather="users"></i> 3/4 members</span>
+                <span class="stat"><i data-feather="clock"></i> 10–14 weeks</span>
+                <span class="stat"><i data-feather="calendar"></i> Posted Jul 28</span>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Sculpture</span>
+                <span class="tag">Interactive</span>
+                <span class="tag">Arduino</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- Load More Section -->
+      <div class="load-more-section">
+        <button class="cta-button load-more-btn" id="loadMoreBtn">Load More Projects</button>
+        <p class="projects-count">Showing 8 of 24 projects</p>
+      </div>
+    </section>
   </main>
 
-  <!-- Success Modal -->
-  <div class="application-modal" id="successModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-content" role="document">
-      <div class="modal-header">
-        <h3>Application Submitted! 🎉</h3>
-        <button class="modal-close" id="modalClose" aria-label="Close">
-          <i data-feather="x"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Thank you for your interest in the Brand Identity System project!</p>
-        <p>The project lead will review your application and get back to you within 2–3 business days.</p>
-        <div class="modal-actions">
-          <button class="submit-btn" id="modalOk">Got it!</button>
-        </div>
-      </div>
-    </div>
+  <!-- Dashboard Quick Access -->
+  <div class="dashboard-quick-access">
+    <a href="user-dashboard-demo.html" class="dashboard-fab" title="Your Dashboard">
+      <i data-feather="grid"></i>
+    </a>
   </div>
 
   <footer>
@@ -300,6 +431,7 @@
     <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -321,79 +453,92 @@
         });
       }
 
-      // Application form submission (demo)
-      const applicationForm = document.getElementById('applicationForm');
-      const successModal = document.getElementById('successModal');
-      const modalOverlay = document.getElementById('modalOverlay');
-      const modalClose = document.getElementById('modalClose');
-      const modalOk = document.getElementById('modalOk');
-      const applyBtn = document.getElementById('applyBtn');
+      // Filter/Search/Sort
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+      const searchInput = document.getElementById('projectSearch');
+      const sortSelect = document.getElementById('projectSort');
 
-      function openModal() {
-        successModal.classList.add('active');
-        successModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeModal() {
-        successModal.classList.remove('active');
-        successModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = 'auto';
-      }
+      function filterProjects() {
+        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+        const searchTerm = searchInput.value.toLowerCase();
 
-      if (applicationForm) {
-        applicationForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          applyBtn.classList.add('loading');
+        projectCards.forEach((card, index) => {
+          const category = card.dataset.category;
+          const title = card.dataset.title.toLowerCase();
+          const matchesFilter = activeFilter === 'all' || category === activeFilter;
+          const matchesSearch = title.includes(searchTerm);
 
-          const formData = new FormData(applicationForm);
-          const applicationData = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            role: formData.get('role'),
-            availability: formData.get('availability'),
-            portfolio: formData.get('portfolio'),
-            coverLetter: formData.get('coverLetter'),
-            skills: formData.get('skills'),
-            timestamp: new Date().toISOString(),
-            projectTitle: 'Brand Identity System'
-          };
-
-          const applications = JSON.parse(localStorage.getItem('projectApplications') || '[]');
-          applications.push(applicationData);
-          localStorage.setItem('projectApplications', JSON.stringify(applications));
-
-          setTimeout(() => {
-            applyBtn.classList.remove('loading');
-            applicationForm.reset();
-            openModal();
-          }, 600);
-        });
-      }
-
-      [modalOverlay, modalClose, modalOk].forEach(el => {
-        el && el.addEventListener('click', closeModal);
-      });
-
-      // Bookmark functionality (demo)
-      const bookmarkBtn = document.getElementById('bookmarkBtn');
-      if (bookmarkBtn) {
-        bookmarkBtn.addEventListener('click', () => {
-          const pressed = bookmarkBtn.getAttribute('aria-pressed') === 'true';
-          bookmarkBtn.setAttribute('aria-pressed', String(!pressed));
-          bookmarkBtn.classList.toggle('active');
-        });
-      }
-
-      // Reveal animations
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal');
+          if (matchesFilter && matchesSearch) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0) scale(1)';
+            }, index * 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px) scale(0.95)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
           }
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      }
 
-      document.querySelectorAll('.content-section, .timeline-item').forEach(el => observer.observe(el));
+      function sortProjects() {
+        const sortBy = sortSelect.value;
+        const grid = document.getElementById('projectsGrid');
+        const cards = Array.from(projectCards);
+
+        cards.sort((a, b) => {
+          if (sortBy === 'members') {
+            return parseInt(b.dataset.members) - parseInt(a.dataset.members);
+          } else if (sortBy === 'alphabetical') {
+            return a.dataset.title.localeCompare(b.dataset.title);
+          }
+          // 'newest' and 'oldest' fall back to current order for demo
+          return 0;
+        });
+
+        cards.forEach(card => grid.appendChild(card));
+        animateCards();
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filterProjects();
+        });
+      });
+
+      searchInput.addEventListener('input', filterProjects);
+      sortSelect.addEventListener('change', sortProjects);
+
+      // Overlay hover visibility
+      projectCards.forEach(card => {
+        const overlay = card.querySelector('.project-overlay');
+        card.addEventListener('mouseenter', () => overlay.style.opacity = '1');
+        card.addEventListener('mouseleave', () => overlay.style.opacity = '0');
+      });
+
+      // Load more (demo)
+      document.getElementById('loadMoreBtn').addEventListener('click', () => {
+        alert('In a real application, this would load more projects!');
+      });
+
+      // Initial animation
+      function animateCards() {
+        projectCards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(30px) scale(0.9)';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+          }, index * 80);
+        });
+      }
+      animateCards();
     });
   </script>
 </body>

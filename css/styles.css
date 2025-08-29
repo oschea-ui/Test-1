@@ -331,94 +331,6 @@ footer {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-    
-    .section-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .hero-message {
-        padding: 0 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-message p {
-        font-size: 1.1rem;
-    }
-    
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-message .cta-text {
-        font-size: 1.75rem;
-    }
-}
-
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none;
-    }
-}
-/* Add these new styles to your existing CSS file */
-
-/* Centered Hero Section */
-.centered-hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* Styled Enter Button */
-.enter-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: var(--gradient-1);
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 1rem 2.5rem;
-    border-radius: 30px;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin: 2rem 0;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.enter-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
-    border: 2px solid var(--accent-1);
-}
-
 /* Login Page Styles */
 .login-section {
     min-height: 100vh;
@@ -485,7 +397,8 @@ footer {
     color: var(--text-secondary);
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 1rem;
     background: var(--darker-bg);
@@ -496,9 +409,36 @@ footer {
     transition: border-color 0.3s ease;
 }
 
-.form-group input:focus {
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: var(--accent-1);
+}
+
+/* Custom scrollbar for textarea */
+.form-group textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-group textarea::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+    border-radius: 4px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb {
+    background: var(--accent-1);
+    border-radius: 4px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--accent-1), var(--accent-2));
 }
 
 .submit-btn {
@@ -542,20 +482,49 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Ensure the hero message is centered and styled properly */
-.hero-message {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-message {
+        padding: 0 1rem;
+    }
 }
 
-.hero-message p {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-message p {
+        font-size: 1.1rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-message .cta-text {
+        font-size: 1.75rem;
+    }
 }
 
-.subtle-text {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-style: italic;
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
 }

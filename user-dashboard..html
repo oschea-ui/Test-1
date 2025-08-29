@@ -1,1 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .dashboard {
+      padding: 2rem 0;
+    }
+    
+    .dashboard-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    .dashboard-nav {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .nav-tab {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .nav-tab.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+    
+    .dashboard-content {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+    }
+    
+    .notification-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+      border-left: 4px solid #667eea;
+    }
+    
+    .notification-item.unread {
+      border-left-color: #28a745;
+      background: #f8fff9;
+    }
+    
+    .notification-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+    
+    .notification-time {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+    
+    .application-details {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-accept {
+      background: #28a745;
+      color: white;
+    }
+    
+    .btn-reject {
+      background: #dc3545;
+      color: white;
+    }
+    
+    .btn-view {
+      background: #667eea;
+      color: white;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    
+    .stats-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .stats-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #6c757d;
+    }
+    
+    .notification-badge {
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
 
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .project-status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .status-active {
+      background: #28a745;
+      color: white;
+    }
+
+    .status-pending {
+      background: #ffc107;
+      color: #333;
+    }
+
+    .status-completed {
+      background: #6c757d;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .dashboard-nav {
+        flex-wrap: wrap;
+      }
+      
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon"></span>
+          The Studio
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="discussions.html">Discussions</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="showcase.html">Showcase</a>
+        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+      <div class="container">
+        <h1>Welcome back, Creator!</h1>
+        <p>Manage your projects and team applications</p>
+      </div>
+    </section>
+
+    <div class="container dashboard">
+      <!-- Navigation Tabs -->
+      <div class="dashboard-nav">
+        <button class="nav-tab active" onclick="switchTab('my-projects')">My Projects</button>
+        <button class="nav-tab" onclick="switchTab('applications')">
+          Applications
+          <span class="notification-badge" id="applicationsBadge">3</span>
+        </button>
+        <button class="nav-tab" onclick="switchTab('joined-projects')">Joined Projects</button>
+      </div>
+
+      <div class="dashboard-content">
+        <!-- Main Content Area -->
+        <div class="main-content">
+          <!-- My Projects Tab -->
+          <div id="my-projects" class="tab-content active">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+              <h2>My Projects</h2>
+              <a href="upload-project-demo.html" class="btn btn-view">+ New Project</a>
+            </div>
+            
+            <div class="project-grid">
+              <div class="project-card">
+                <span class="project-status status-active">Active</span>
+                <h3>Brand Identity System</h3>
+                <p>Complete visual identity for a tech startup</p>
+                <div style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;">
+                  <div>Team: 2/5 members</div>
+                  <div>Applications: 3 pending</div>
+                  <div>Created: Dec 15, 2024</div>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="project-detail-demo.html" class="btn btn-view">Manage</a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <span class="project-status status-pending">Recruiting</span>
+                <h3>Mobile App Design</h3>
+                <p>UI/UX design for productivity app</p>
+                <div style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;">
+                  <div>Team: 1/4 members</div>
+                  <div>Applications: 0 pending</div>
+                  <div>Created: Dec 10, 2024</div>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="project-detail-demo.html" class="btn btn-view">Manage</a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <span class="project-status status-completed">Completed</span>
+                <h3>Logo Design Project</h3>
+                <p>Logo and branding for local business</p>
+                <div style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;">
+                  <div>Team: 3/3 members</div>
+                  <div>Completed: Nov 2024</div>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="project-detail-demo.html" class="btn btn-view">View</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Applications Tab -->
+          <div id="applications" class="tab-content">
+            <h2>Pending Applications</h2>
+            
+            <div id="applicationsList">
+              <!-- Applications will be loaded here by JavaScript -->
+            </div>
+
+            <div id="noApplications" class="empty-state" style="display: none;">
+              <i data-feather="inbox" style="width: 64px; height: 64px; margin-bottom: 1rem;"></i>
+              <h3>No applications yet</h3>
+              <p>When people apply to your projects, you'll see them here.</p>
+            </div>
+          </div>
+
+          <!-- Joined Projects Tab -->
+          <div id="joined-projects" class="tab-content">
+            <h2>Projects I've Joined</h2>
+            
+            <div class="project-grid">
+              <div class="project-card">
+                <span class="project-status status-active">Active</span>
+                <h3>Photography Exhibition</h3>
+                <p>Curating digital photography showcase</p>
+                <div style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;">
+                  <div>Role: Frontend Developer</div>
+                  <div>Team: 5/6 members</div>
+                  <div>Joined: Dec 5, 2024</div>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="project-detail-demo.html" class="btn btn-view">View Project</a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <span class="project-status status-active">Active</span>
+                <h3>Music Album Artwork</h3>
+                <p>Creating visual identity for indie album</p>
+                <div style="margin-top: 1rem; color: #6c757d; font-size: 0.9rem;">
+                  <div>Role: Graphic Designer</div>
+                  <div>Team: 3/3 members</div>
+                  <div>Joined: Nov 28, 2024</div>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="project-detail-demo.html" class="btn btn-view">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Stats Cards -->
+          <div class="stats-card">
+            <div class="stats-number">5</div>
+            <p>Active Projects</p>
+          </div>
+
+          <div class="stats-card">
+            <div class="stats-number">12</div>
+            <p>Total Collaborators</p>
+          </div>
+
+          <div class="stats-card">
+            <div class="stats-number">8</div>
+            <p>Completed Projects</p>
+          </div>
+
+          <!-- Recent Activity -->
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 1rem;">Recent Activity</h3>
+            <div style="font-size: 0.9rem; color: #6c757d;">
+              <div style="margin-bottom: 0.5rem;">• New application received</div>
+              <div style="margin-bottom: 0.5rem;">• Project milestone completed</div>
+              <div style="margin-bottom: 0.5rem;">• Team member joined</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+      loadApplications();
+    });
+
+    function switchTab(tabName) {
+      // Hide all tab content
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // Remove active class from all tabs
+      const tabs = document.querySelectorAll('.nav-tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Show selected tab content
+      document.getElementById(tabName).classList.add('active');
+
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+
+    function loadApplications() {
+      const applications = JSON.parse(localStorage.getItem('projectApplications') || '[]');
+      const applicationsList = document.getElementById('applicationsList');
+      const noApplications = document.getElementById('noApplications');
+      const badge = document.getElementById('applicationsBadge');
+
+      if (applications.length === 0) {
+        applicationsList.innerHTML = '';
+        noApplications.style.display = 'block';
+        badge.style.display = 'none';
+        return;
+      }
+
+      badge.textContent = applications.length;
+      badge.style.display = 'inline';
+      noApplications.style.display = 'none';
+
+      applicationsList.innerHTML = applications.map((app, index) => `
+        <div class="notification-item unread">
+          <div class="notification-header">
+            <h4>New Application: ${app.name}</h4>
+            <span class="notification-time">${new Date(app.timestamp).toLocaleDateString()}</span>
+          </div>
+          <p><strong>Project:</strong> Brand Identity System</p>
+          <p><strong>Email:</strong> ${app.email}</p>
+          <p><strong>Availability:</strong> ${app.availability}</p>
+          
+          <div class="application-details">
+            <p><strong>Cover Letter:</strong></p>
+            <p>${app.coverLetter}</p>
+            
+            ${app.skills ? `
+            <p><strong>Skills & Experience:</strong></p>
+            <p>${app.skills}</p>
+            ` : ''}
+            
+            ${app.portfolio ? `
+            <p><strong>Portfolio:</strong></p>
+            <p><a href="${app.portfolio}" target="_blank">${app.portfolio}</a></p>
+            ` : ''}
+          </div>
+          
+          <div class="action-buttons">
+            <button class="btn btn-accept" onclick="handleApplication(${index}, 'accept', '${app.name}')">Accept</button>
+            <button class="btn btn-reject" onclick="handleApplication(${index}, 'reject', '${app.name}')">Decline</button>
+            <button class="btn btn-view" onclick="viewApplicantProfile('${app.email}')">View Profile</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleApplication(index, action, name) {
+      const applications = JSON.parse(localStorage.getItem('projectApplications') || '[]');
+      
+      // Remove the application from the list
+      applications.splice(index, 1);
+      localStorage.setItem('projectApplications', JSON.stringify(applications));
+      
+      // Show success message
+      const actionText = action === 'accept' ? 'accepted' : 'declined';
+      alert(`Application from ${name} has been ${actionText}!`);
+      
+      // Reload applications
+      loadApplications();
+    }
+
+    function viewApplicantProfile(email) {
+      alert(`Would open profile for: ${email}`);
+      // In a real app, this would navigate to the user's profile page
+    }
+  </script>
+</body>
+</html>

@@ -3,185 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Studio</title>
+  <title>Login – The Studio</title>
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav>
-      <div class="logo">
+       <div class="logo">
         <a href="index.html" style="text-decoration: none; color: inherit;">
           <span class="logo-icon"></span>
           The Studio
         </a>
       </div>
-      
-      <!-- Mobile hamburger button -->
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
-     <div class="nav-links" id="navLinks">
+      <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="discussions.html">Discussions</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="showcase.html">Showcase</a>
-        <a href="login.html" class="enter-btn">Login/Sign Up</a>
+        <a href="login.html" class="enter-btn">Enter</a>
       </div>
     </nav>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Welcome to <span class="gradient-text">The Studio</span></h1>
-        <div class="hero-message">
-          <p>A private collective for serious creatives. Invite-only. No noise, just value.</p>
-    
-          <a href="login.html" class="cta-button">Enter</a>
-          <p class="subtle-text">Fuel creativity.</p>
-        </div>
+  <main class="login-section">
+    <div class="login-container">
+      <h1>Access The Studio</h1>
+
+      <div class="form-tabs">
+        <button class="tab-btn active" data-target="login">Login</button>
+        <button class="tab-btn" data-target="signup">Signup</button>
+        <button class="tab-btn" data-target="apply">Apply</button>
       </div>
-    </section>
 
-    <!-- Mission -->
-    <section id="mission" class="mission container">
-      <div class="section-grid">
-        <div class="text-content">
-          <h2>Goal Orientated</h2>
-          <div class="mission-text">
-            <p>We strive to build a space where artists, thinkers, and innovators can focus deeply, free from distractions.</p>
-            <p class="highlight">No algorithms. No noise. Just creation. Let's keep it that way.</p>
-          </div>
+      <!-- Login -->
+      <div id="login" class="tab-content active">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
         </div>
-        <div class="gradient-border">
-          <p>Inside The Studio, you'll find curated discussions, tools for collaboration, and a shared sense of purpose. It's not for everyone, but it might be for you.</p>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required>
         </div>
+        <button class="submit-btn">Login</button>
+        <a href="#" class="forgot-password">Forgot password?</a>
       </div>
-    </section>
 
-    <!-- Features -->
-    <section id="features" class="features container">
-      <h2>Why Join?</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <i data-feather="shield"></i>
-          <h3>Privacy</h3>
-          <p>Your work, your ideas, protected from the noise of the outside world.</p>
+      <!-- Signup -->
+      <div id="signup" class="tab-content">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" required>
         </div>
-        <div class="feature-card">
-          <i data-feather="users"></i>
-          <h3>Community</h3>
-          <p>Connect with handpicked creatives who share your standards.</p>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
         </div>
-        <div class="feature-card">
-          <i data-feather="zap"></i>
-          <h3>Focus</h3>
-          <p>Work with intention in an environment designed for depth, not distraction.</p>
+        <div class="form-group">
+          <label>Invite Code</label>
+          <input type="text" required>
         </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required>
+        </div>
+        <button class="submit-btn">Signup</button>
       </div>
-    </section>
 
-    <!-- Projects Showcase -->
-    <section id="projects-showcase" class="projects-showcase">
-      <div class="container">
-        <h2>Featured <span class="gradient-text">Projects</span></h2>
-        <p class="showcase-subtitle">Discover creative collaborations happening in our community</p>
-        
-        <div class="featured-projects-grid">
-          <div class="featured-project-card" onclick="window.location.href='project-detail-demo.html'">
-            <div class="featured-project-image">
-              <div class="project-placeholder">
-                <i data-feather="layers"></i>
-              </div>
-              <div class="project-status-badge">Open</div>
-            </div>
-            <div class="featured-project-info">
-              <h3>Brand Identity System</h3>
-              <p>Complete visual identity for innovative tech startup</p>
-              <div class="project-stats">
-                <span><i data-feather="users"></i> 2/5 members</span>
-                <span><i data-feather="clock"></i> 6 weeks</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="featured-project-card" onclick="window.location.href='project-detail-demo.html'">
-            <div class="featured-project-image">
-              <div class="project-placeholder">
-                <i data-feather="code"></i>
-              </div>
-              <div class="project-status-badge recruiting">Recruiting</div>
-            </div>
-            <div class="featured-project-info">
-              <h3>Creative Portfolio Platform</h3>
-              <p>Modern web platform for showcasing creative work</p>
-              <div class="project-stats">
-                <span><i data-feather="users"></i> 1/4 members</span>
-                <span><i data-feather="clock"></i> 8 weeks</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="featured-project-card" onclick="window.location.href='project-detail-demo.html'">
-            <div class="featured-project-image">
-              <div class="project-placeholder">
-                <i data-feather="camera"></i>
-              </div>
-              <div class="project-status-badge">Active</div>
-            </div>
-            <div class="featured-project-info">
-              <h3>Photography Exhibition</h3>
-              <p>Digital gallery for contemporary photography</p>
-              <div class="project-stats">
-                <span><i data-feather="users"></i> 5/6 members</span>
-                <span><i data-feather="clock"></i> 4 weeks</span>
-              </div>
-            </div>
-          </div>
+      <!-- Apply -->
+      <div id="apply" class="tab-content">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" required>
         </div>
-
-        <div class="projects-cta">
-          <a href="projects.html" class="cta-button">Explore All Projects</a>
-          <a href="upload-project-demo.html" class="cta-button secondary">Share Your Project</a>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
         </div>
+        <div class="form-group">
+          <label>Why do you want to join?</label>
+          <textarea required></textarea>
+        </div>
+        <button class="submit-btn">Apply</button>
       </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-      <div class="contact-container">
-        <h2>Get in Touch</h2>
-        <p>Questions? Reach out to our team.</p>
-        <a href="mailto:info@thestudio.com" class="cta-button">Contact Us</a>
-      </div>
-    </section>
+    </div>
   </main>
-
-  <!-- Dashboard Quick Access -->
-  <div class="dashboard-quick-access">
-    <a href="user-dashboard-demo.html" class="dashboard-fab" title="Your Dashboard">
-      <i data-feather="grid"></i>
-    </a>
-  </div>
-
-  <!-- Project Notification (will be shown via JS) -->
-  <div class="project-notification" id="projectNotification">
-    <div class="notification-header">
-      <span class="notification-title">🎉 Welcome to Projects!</span>
-      <button class="notification-close" onclick="hideNotification()">
-        <i data-feather="x"></i>
-      </button>
-    </div>
-    <div class="notification-message">
-      Click on any project to see how the collaboration system works. You can apply to join teams and manage your own projects!
-    </div>
-  </div>
 
   <footer>
     <div class="footer-content container">
@@ -200,98 +104,21 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       feather.replace();
-      
-      // Mobile menu toggle functionality
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-      const navLinks = document.getElementById('navLinks');
-      
-      mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-      });
-      
-      // Close mobile menu when clicking on a link
-      const navLinkItems = navLinks.querySelectorAll('a');
-      navLinkItems.forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
+
+      // Tab switching
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
+
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.target).classList.add("active");
         });
-      });
-      
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-          navLinks.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-        }
-      });
-
-      // Show project notification after 3 seconds (demo)
-      setTimeout(() => {
-        showProjectNotification();
-      }, 3000);
-
-      // Animate project cards on scroll
-      const projectCards = document.querySelectorAll('.featured-project-card');
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0) scale(1)';
-            }, index * 200);
-          }
-        });
-      }, observerOptions);
-
-      projectCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px) scale(0.95)';
-        card.style.transition = 'all 0.6s ease';
-        observer.observe(card);
       });
     });
-
-    function showProjectNotification() {
-      const notification = document.getElementById('projectNotification');
-      notification.classList.add('show');
-      
-      // Auto-hide after 8 seconds
-      setTimeout(() => {
-        hideNotification();
-      }, 8000);
-    }
-
-    function hideNotification() {
-      const notification = document.getElementById('projectNotification');
-      notification.classList.remove('show');
-    }
-
-    // Check for project applications in localStorage and show notification
-    function checkForNewApplications() {
-      const applications = JSON.parse(localStorage.getItem('projectApplications') || '[]');
-      if (applications.length > 0) {
-        const notification = document.getElementById('projectNotification');
-        const title = notification.querySelector('.notification-title');
-        const message = notification.querySelector('.notification-message');
-        
-        title.textContent = `📝 ${applications.length} New Application${applications.length > 1 ? 's' : ''}!`;
-        message.textContent = `You have new project applications waiting for review. Visit your dashboard to manage them.`;
-        
-        setTimeout(() => {
-          showProjectNotification();
-        }, 2000);
-      }
-    }
-
-    // Check for applications when page loads
-    setTimeout(checkForNewApplications, 1000);
   </script>
 </body>
 </html>

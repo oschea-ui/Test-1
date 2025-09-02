@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Studio — Minimalist BG Test</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Background container behind all content */
+    #ai-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #ai-bg .shade {
+      position: absolute;
+      inset: 0;
+      /* Subtle darkening for better text contrast; tweak as needed */
+      background:
+        radial-gradient(1200px 600px at 50% 20%, rgba(0,0,0,0.25), rgba(0,0,0,0.65) 70%),
+        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+      opacity: 0.85;
+    }
+    /* Ensure content is above the background */
+    main, footer { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
 
+  <!-- Fixed background animation layer -->
+  <div id="ai-bg" aria-hidden="true">
+    <canvas id="ai-bg-gl"></canvas>
+    <canvas id="ai-bg-hud"></canvas>
+    <div class="shade"></div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to <span style="color: #ffffff;">The Studio</span></h1>
+        <div class="hero-message">
+          <p>A private collective for serious creatives. Invite-only. No noise, just value.</p>
+          <a href="login.html" class="cta-button">Enter</a>
+          <p class="subtle-text">Fuel creativity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="mission container">
+      <div class="section-grid">
+        <div class="text-content">
+          <h2>Goal Orientated</h2>
+          <div class="mission-text">
+            <p>We strive to build a space where artists, thinkers, and innovators can focus deeply, free from distractions.</p>
+            <p class="highlight">No algorithms. No noise. Just creation. Let's keep it that way.</p>
+          </div>
+        </div>
+        <div class="gradient-border">
+          <p>Inside The Studio, you'll find curated discussions, tools for collaboration, and a shared sense of purpose. It's not for everyone, but it might be for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features container">
+      <h2>Why Join?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i data-feather="shield"></i>
+          <h3>Privacy</h3>
+          <p>Your work, your ideas, protected from the noise of the outside world.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="users"></i>
+          <h3>Community</h3>
+          <p>Connect with handpicked creatives who share your standards.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="zap"></i>
+          <h3>Focus</h3>
+          <p>Work with intention in an environment designed for depth, not distraction.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script type="module">
+    import { initAIBg } from './js/ai-bg-three.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace();
+      // Minimalist + decorative (non-interactive)
+      initAIBg({
+        mode: 'minimal',
+        interactive: false
+      });
+    });
+  </script>
+</body>
+</html>

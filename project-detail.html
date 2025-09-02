@@ -1,1 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Detail</title>
+  <!-- New, page-specific styles -->
+  <link rel="stylesheet" href="css/project-detail.css" />
+</head>
+<body>
+  <main class="pd-container">
+    <article class="pd-card" aria-labelledby="project-title">
+      <header class="pd-header">
+        <div class="pd-author">
+          <img
+            class="pd-avatar"
+            src="https://i.pravatar.cc/96?img=12"
+            alt="Profile picture of Alex Johnson"
+            width="56"
+            height="56"
+          />
+          <div>
+            <div class="pd-author-name">Alex Johnson</div>
+            <time class="pd-date" datetime="2025-09-02">Posted Sep 2, 2025</time>
+          </div>
+        </div>
 
+        <h1 id="project-title" class="pd-title">Urban Garden Planner</h1>
+        <p class="pd-subtitle">
+          A mobile-friendly tool that helps small-space gardeners plan crop rotations and watering schedules.
+        </p>
+      </header>
+
+      <section class="pd-gallery" aria-label="Project images">
+        <figure class="pd-media">
+          <img
+            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1600&auto=format&fit=crop"
+            alt="Dashboard screen showing garden layout"
+            loading="lazy"
+          />
+          <figcaption class="sr-only">Dashboard screen showing garden layout</figcaption>
+        </figure>
+        <figure class="pd-media">
+          <img
+            src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop"
+            alt="Plant details modal with watering schedule"
+            loading="lazy"
+          />
+          <figcaption class="sr-only">Plant details modal with watering schedule</figcaption>
+        </figure>
+        <figure class="pd-media">
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop"
+            alt="Mobile layout of the planner"
+            loading="lazy"
+          />
+          <figcaption class="sr-only">Mobile layout of the planner</figcaption>
+        </figure>
+      </section>
+
+      <section class="pd-body" aria-label="Project description">
+        <h2 class="sr-only">Description</h2>
+        <p>
+          Urban Garden Planner is designed for balcony and backyard gardeners. It provides smart suggestions for plant
+          placement based on sunlight, season, and companion planting.
+        </p>
+        <p>
+          The app is built with a component-based architecture and supports offline mode. The goal is to simplify weekly
+          care with reminders and checklists.
+        </p>
+
+        <ul class="pd-tags" aria-label="Skills and tags">
+          <li>JavaScript</li>
+          <li>Responsive Design</li>
+          <li>Accessibility</li>
+          <li>PWA</li>
+        </ul>
+      </section>
+
+      <footer class="pd-footer">
+        <button type="button" class="pd-apply-btn" aria-label="Apply to this project">Apply</button>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

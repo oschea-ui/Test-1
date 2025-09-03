@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Studio</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Studio — Detection BG Test</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     /* Fixed background animation layer behind all content */
     #ai-bg {
@@ -17,11 +17,11 @@
     #ai-bg .shade {
       position: absolute;
       inset: 0;
-      /* Subtle darkening for better text contrast; tweak as needed */
+      /* Slightly lighter so lines/boxes pop */
       background:
-        radial-gradient(1200px 600px at 50% 20%, rgba(0,0,0,0.20), rgba(0,0,0,0.65) 70%),
-        linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
-      opacity: 0.9;
+        radial-gradient(1200px 600px at 50% 20%, rgba(0,0,0,0.18), rgba(0,0,0,0.55) 70%),
+        linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+      opacity: 0.8;
     }
     /* Ensure content sits above the background canvases */
     main, footer { position: relative; z-index: 1; }
@@ -105,36 +105,10 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       feather.replace();
-
-      // Guarded mobile menu script (safe even if elements are missing)
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-      const navLinks = document.getElementById('navLinks');
-
-      if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          mobileMenuToggle.classList.toggle('active');
-        });
-
-        const navLinkItems = navLinks.querySelectorAll('a');
-        navLinkItems.forEach(link => {
-          link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-          });
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            navLinks.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-          }
-        });
-      }
     });
   </script>
 
-  <!-- Background animation script (lightweight Canvas, non-blocking) -->
+  <!-- Background animation script -->
   <script src="js/ai-bg-canvas.js" defer></script>
 </body>
 </html>

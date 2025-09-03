@@ -1,31 +1,33 @@
 /* AI Vision-style Background (Canvas 2D)
-   - Multiple moving targets across the screen
-   - Strong bounding boxes with leader lines to edge-aligned labels
-   - Smooth looping, low CPU, respects reduced motion and pauses on hidden tabs
-   - No dependencies, runs behind content (pointer-events: none)
+   - Bold bounding boxes + long leader lines to edge labels (left/right gutters)
+   - Many moving targets with smooth horizontal motion and light vertical sway
+   - Faint grid + scanning sweep for “vision system” vibe
+   - Efficient: capped DPR, pauses on hidden tab, respects reduced motion
+   - No dependencies; runs behind content (pointer-events: none)
 */
 
 (() => {
   const container = document.getElementById('ai-bg');
   if (!container) return;
 
-  const world = document.getElementById('ai-bg-world'); // backdrop grid + faint silhouettes
-  const hud = document.getElementById('ai-bg-hud');     // boxes, lines, labels
+  const world = document.getElementById('ai-bg-world'); // grid + silhouettes
+  const hud = document.getElementById('ai-bg-hud');     // boxes + lines + labels
   if (!world || !hud) return;
 
   const wctx = world.getContext('2d', { alpha: true });
   const hctx = hud.getContext('2d', { alpha: true });
 
-  // Visual tuning
+  // Visuals (higher contrast than before)
   const ACCENT = '#35e0c2';
-  const WORLD_SIL = 'rgba(255,255,255,0.05)';   // silhouettes
-  const GRID_LINE = 'rgba(255,255,255,0.06)';   // grid
-  const SWEEP = 'rgba(53,224,194,0.08)';        // scanning band
-  const BOX_COLOR = 'rgba(255,255,255,0.9)';    // bounding box/brackets
-  const LEADER_COLOR = 'rgba(255,255,255,0.5)'; // leader lines
-  const LABEL_BG = 'rgba(0,0,0,0.78)';          // label pill
-  const LABEL_TEXT = 'rgba(255,255,255,0.95)';  // label text
-  const LABEL_TICK = hexToRgba(ACCENT, 0.95);   // accent bar on label
+  const GRID_LINE = 'rgba(255,255,255,0.08)';
+  const SWEEP = 'rgba(53,224,194,0.10)';
+  const WORLD_SIL = 'rgba(255,255,255,0.10)';
+
+  const BOX_COLOR = 'rgba(255,255,255,0.98)';    // bracket box
+  const LINE_COLOR = 'rgba(255,255,255,0.9)';    // leader line
+  const LABEL_BG = 'rgba(0,0,0,0.88)';           // label pill
+  const LABEL_TEXT = 'rgba(255,255,255,0.98)';
+  const LABEL_TICK = hexToRgba(ACCENT, 0.98);
 
   // Performance/behavior
   const DPR_CAP = 1.5;
@@ -33,44 +35,49 @@
   let running = !prefersReduced;
   let dpr = Math.min(DPR_CAP, window.devicePixelRatio || 1);
 
-  // Entities (cars, humans, boxes)
+  // Random + entities
+  const RNG = mulberry32(0xA11A11);
   const classes = [
     { name: 'Car', kind: 'car' },
     { name: 'Human', kind: 'human' },
     { name: 'Object', kind: 'box' }
   ];
-  const RNG = mulberry32(0xA11A11); // deterministic
 
   let ents = [];
+  let lanesLeft = [];
+  let lanesRight = [];
+  let dashOffset = 0;
   let last = performance.now();
-  let tAccum = 0;
 
   function initEntities(W, H) {
     ents = [];
-    // Count scales with viewport; more on bigger screens
-    const base = Math.round(clamp(W * H / 80000, 10, 24)); // ~10 on small, up to ~24
-    for (let i = 0; i < base; i++) {
+    // More entities on bigger screens
+    const count = Math.round(clamp((W * H) / 50000, 18, 36));
+    const short = Math.min(W, H);
+
+    for (let i = 0; i < count; i++) {
       const cls = classes[Math.floor(RNG() * classes.length)];
-      // Sizes relative to viewport
-      const short = Math.min(W, H);
       let bw, bh;
       if (cls.kind === 'car') {
         bw = randRange(short * 0.08, short * 0.14);
         bh = bw * randRange(0.38, 0.52);
       } else if (cls.kind === 'human') {
-        bw = randRange(short * 0.04, short * 0.06);
-        bh = bw * randRange(2.2, 2.8);
+        bw = randRange(short * 0.04, short * 0.065);
+        bh = bw * randRange(2.1, 2.7);
       } else {
         bw = randRange(short * 0.06, short * 0.10);
         bh = randRange(short * 0.06, short * 0.10);
       }
-      const speed = randRange(22, 58); // px/s
-      const dir = RNG() * Math.PI * 2;
-      const vx = Math.cos(dir) * speed;
-      const vy = Math.sin(dir) * speed;
 
-      const x = RNG() * (W - bw);
-      const y = RNG() * (H - bh);
+      // Motion: predominant horizontal with gentle vertical sway
+      const speed = randRange(34, 70); // px/s
+      const toRight = RNG() < 0.5;
+      const vx = toRight ? speed : -speed;
+      const vy = randRange(-8, 8);
+
+      // Start anywhere, wrap for seamless loop
+      let x = RNG() * (W - bw);
+      let y = RNG() * (H - bh);
 
       ents.push({
         id: i + 1,
@@ -78,10 +85,47 @@
         kind: cls.kind,
         x, y, w: bw, h: bh,
         vx, vy,
-        conf: 0.82 + RNG() * 0.16,
-        // Make lines cross the screen: half go to left gutter, half to right
-        side: RNG() < 0.5 ? 'left' : 'right'
+        conf: 0.84 + RNG() * 0.12,
+        side: toRight ? 'right' : 'left',
+        laneIndex: -1 // assigned later
       });
+    }
+  }
+
+  function makeLanes(W, H) {
+    // Even lanes down the screen; labels snap to lane centers
+    const count = clamp(Math.floor(H / 120), 6, 12);
+    const pad = 18;
+    const spacing = (H - pad * 2) / (count - 1);
+    lanesLeft = [];
+    lanesRight = [];
+    for (let i = 0; i < count; i++) {
+      const y = Math.round(pad + i * spacing);
+      lanesLeft.push({ y, used: 0 });
+      lanesRight.push({ y, used: 0 });
+    }
+  }
+
+  function assignLanes(W, H) {
+    // Reset lane usage each frame and assign nearest available lane
+    for (const L of lanesLeft) L.used = 0;
+    for (const R of lanesRight) R.used = 0;
+
+    for (const e of ents) {
+      const set = e.side === 'left' ? lanesLeft : lanesRight;
+      let idx = e.laneIndex;
+      if (idx < 0 || idx >= set.length) {
+        // Find nearest lane to anchor Y
+        idx = nearestLaneIndex(set, e.y);
+      } else {
+        // If current lane is heavily used, consider moving one step
+        if (set[idx].used > 1) {
+          const better = nearestLaneIndex(set, e.y);
+          if (better !== idx) idx = better;
+        }
+      }
+      e.laneIndex = idx;
+      set[idx].used++;
     }
   }
 
@@ -99,6 +143,7 @@
     wctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     hctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    makeLanes(W, H);
     if (!ents.length) initEntities(W, H);
   }
 
@@ -106,8 +151,7 @@
   window.addEventListener('resize', debounce(() => {
     const W = container.clientWidth, H = container.clientHeight;
     sizeCanvases();
-    // Reset entities on big aspect changes to keep composition nice
-    ents = [];
+    // Re-compose on big aspect changes
     initEntities(W, H);
   }, 120), { passive: true });
 
@@ -124,140 +168,105 @@
     const now = performance.now();
     const dt = Math.min(50, now - last) / 1000;
     last = now;
-    tAccum += dt;
-    drawFrame(dt, tAccum);
+    drawFrame(dt, now * 0.001);
   }
 
   function drawFrame(dt = 0, t = 0) {
     const W = container.clientWidth;
     const H = container.clientHeight;
 
-    // Update entities (wrap for seamless loop)
+    // Update entities with wrap-around and sway
     if (dt > 0) {
       for (const e of ents) {
+        const sway = Math.sin((e.x * 0.01) + e.id) * 10; // vertical wave
         e.x += e.vx * dt;
-        e.y += e.vy * dt;
-        const margin = 60;
-        if (e.x > W + margin) e.x = -e.w - margin;
-        if (e.y > H + margin) e.y = -e.h - margin;
-        if (e.x + e.w < -margin) e.x = W + margin;
-        if (e.y + e.h < -margin) e.y = H + margin;
+        e.y += (e.vy + sway) * dt;
 
-        // Subtle confidence jitter
+        const margin = 100;
+        if (e.vx > 0 && e.x > W + margin) { e.x = -e.w - margin; }
+        if (e.vx < 0 && e.x + e.w < -margin) { e.x = W + margin; }
+        if (e.y < -margin) e.y = H + margin;
+        if (e.y > H + margin) e.y = -margin;
+
         e.conf += (RNG() - 0.5) * 0.01;
-        e.conf = clamp(e.conf, 0.72, 0.98);
+        e.conf = clamp(e.conf, 0.75, 0.98);
       }
     }
 
-    // WORLD: grid + sweep + faint silhouettes
+    // WORLD: grid + scanning band + silhouettes
     wctx.clearRect(0, 0, W, H);
     drawGrid(wctx, W, H, t);
-    for (const e of ents) {
-      wctx.fillStyle = WORLD_SIL;
-      if (e.kind === 'car') {
-        rounded(wctx, e.x, e.y + e.h * 0.18, e.w, e.h * 0.64, 8); wctx.fill();
-        rounded(wctx, e.x + e.w * 0.24, e.y, e.w * 0.52, e.h * 0.46, 6); wctx.fill();
-      } else if (e.kind === 'human') {
-        rounded(wctx, e.x + e.w * 0.32, e.y + e.h * 0.26, e.w * 0.36, e.h * 0.62, 6); wctx.fill();
-        wctx.beginPath(); wctx.arc(e.x + e.w * 0.5, e.y + e.h * 0.16, Math.min(e.w, e.h) * 0.22, 0, Math.PI * 2); wctx.fill();
-      } else {
-        rounded(wctx, e.x, e.y, e.w, e.h, 10); wctx.fill();
-      }
-    }
+    drawSilhouettes(wctx, ents);
 
-    // HUD: boxes + long leader lines + labels
+    // HUD: assign lanes and draw boxes + long leaders + labels
+    assignLanes(W, H);
+
     hctx.clearRect(0, 0, W, H);
     hctx.save();
-    hctx.lineWidth = 1.5;
+    hctx.lineWidth = 1.8;
 
-    // Draw each detection
+    // Animated dashed leaders
+    dashOffset -= dt * 140;
+    hctx.setLineDash([10, 7]);
+    hctx.lineDashOffset = dashOffset;
+
     for (const e of ents) {
-      // Bounding "bracket" box
+      // Bounding brackets
       drawBrackets(hctx, e.x, e.y, e.w, e.h, BOX_COLOR);
 
-      // Compute label layout
-      const confText = `${Math.round(e.conf * 100)}%`;
-      const text = `${e.className} ${confText}`;
-      const font = '12px "Space Grotesk", "DM Sans", system-ui, -apple-system, Segoe UI, Roboto';
-      const layout = layoutLabel(hctx, e, text, font, W, H);
+      // Label text
+      const text = `${e.className} ${Math.round(e.conf * 100)}%`;
 
-      // Leader line: long across-screen elbow to label
-      hctx.strokeStyle = LEADER_COLOR;
+      // Edge label layout at lane Y
+      const side = e.side;
+      const laneSet = side === 'left' ? lanesLeft : lanesRight;
+      const lane = laneSet[e.laneIndex] || laneSet[nearestLaneIndex(laneSet, e.y)];
+      const font = '12px "Space Grotesk", "DM Sans", system-ui, -apple-system, Segoe UI, Roboto';
+      const lab = layoutEdgeLabel(hctx, text, font, side, W, lane.y);
+
+      // Multi-segment leader: anchor -> mid -> vertical to lane -> to label
+      const anchorX = e.x + e.w * 0.5;
+      const anchorY = e.y; // top edge
+      const attachX = side === 'left' ? (lab.x + lab.w) : lab.x;
+      const midX = side === 'left'
+        ? Math.min(anchorX - 24, attachX - 32)
+        : Math.max(anchorX + 24, attachX + 32);
+
+      hctx.strokeStyle = LINE_COLOR;
       hctx.beginPath();
-      hctx.moveTo(layout.anchorX, layout.anchorY);
-      // elbow: go horizontal toward gutter, then vertical to label mid
-      hctx.lineTo(layout.midX, layout.anchorY);
-      hctx.lineTo(layout.midX, layout.labelMidY);
-      hctx.lineTo(layout.attachX, layout.labelMidY);
+      hctx.moveTo(anchorX, anchorY);
+      hctx.lineTo(midX, anchorY);
+      hctx.lineTo(midX, lab.y + lab.h / 2);
+      hctx.lineTo(attachX, lab.y + lab.h / 2);
       hctx.stroke();
 
+      // Solid end cap into label
+      hctx.setLineDash([]);
+      hctx.beginPath();
+      hctx.moveTo(attachX - (side === 'left' ? 6 : -6), lab.y + lab.h / 2);
+      hctx.lineTo(attachX, lab.y + lab.h / 2);
+      hctx.stroke();
+      hctx.setLineDash([10, 7]);
+      hctx.lineDashOffset = dashOffset;
+
       // Label pill
-      hctx.fillStyle = LABEL_BG;
-      rounded(hctx, layout.labelX, layout.labelY, layout.labelW, layout.labelH, 10);
-      hctx.fill();
-
-      // Accent tick
-      hctx.fillStyle = LABEL_TICK;
-      hctx.fillRect(layout.labelX, layout.labelY, 3, layout.labelH);
-
-      // Text
-      hctx.font = font;
-      hctx.fillStyle = LABEL_TEXT;
-      hctx.fillText(text, layout.labelX + layout.padX, layout.labelY + layout.labelH - 6);
+      drawLabelPill(hctx, lab.x, lab.y, lab.w, lab.h, text, font);
     }
 
-    // Micro UI (optional)
+    // Micro UI
+    hctx.setLineDash([]);
     hctx.font = '11px "DM Sans", system-ui';
-    hctx.fillStyle = 'rgba(255,255,255,0.6)';
+    hctx.fillStyle = 'rgba(255,255,255,0.70)';
     hctx.fillText('Auto-labeling: ON', 12, H - 24);
     hctx.fillText('Tracker: Active', 12, H - 10);
 
     hctx.restore();
   }
 
-  /* ---------- layout & drawing helpers ---------- */
-
-  function layoutLabel(ctx, e, text, font, W, H) {
-    const padX = 8;
-    const labelH = 22;
-    ctx.font = font;
-    const tw = Math.ceil(ctx.measureText(text).width);
-    const labelW = Math.min(Math.max(tw + padX * 2, 72), Math.max(140, W * 0.22));
-
-    // Anchor at top edge center of the box
-    const anchorX = e.x + e.w * 0.5;
-    const anchorY = e.y;
-
-    // Gutter to left or right
-    const gutter = 16;
-    const leftX = gutter;
-    const rightX = W - gutter - labelW;
-
-    const side = e.side || (anchorX < W / 2 ? 'left' : 'right');
-    const labelX = side === 'left' ? leftX : rightX;
-
-    // Try to align label vertically near the anchor with margin
-    let labelY = clamp(anchorY - labelH - 8, 8, H - labelH - 8);
-
-    // Leader attachment point on the label edge
-    const attachX = side === 'left' ? (labelX + labelW) : labelX;
-    const labelMidY = labelY + labelH / 2;
-
-    // Midpoint for elbow: halfway between anchor and attachX
-    const midX = side === 'left'
-      ? Math.min(anchorX - 20, attachX - 20)
-      : Math.max(anchorX + 20, attachX + 20);
-
-    return {
-      anchorX, anchorY,
-      labelX, labelY, labelW, labelH, padX,
-      attachX, labelMidY,
-      midX
-    };
-  }
+  /* ------------- helpers ------------- */
 
   function drawGrid(ctx, W, H, t) {
-    const step = Math.round(clamp(Math.min(W, H) / 20, 32, 72));
+    const step = Math.round(clamp(Math.min(W, H) / 18, 36, 72));
     ctx.save();
     ctx.strokeStyle = GRID_LINE;
     ctx.lineWidth = 1;
@@ -272,7 +281,7 @@
     }
     ctx.stroke();
 
-    // Vertical scanning band
+    // Scanning band (vertical)
     const bandW = Math.max(120, W * 0.12);
     const bandX = ((t * 40) % (W + bandW)) - bandW;
     const grad = ctx.createLinearGradient(bandX, 0, bandX + bandW, 0);
@@ -285,9 +294,27 @@
     ctx.restore();
   }
 
+  function drawSilhouettes(ctx, entities) {
+    ctx.fillStyle = WORLD_SIL;
+    for (const e of entities) {
+      if (e.kind === 'car') {
+        rounded(ctx, e.x, e.y + e.h * 0.18, e.w, e.h * 0.64, 8); ctx.fill();
+        rounded(ctx, e.x + e.w * 0.24, e.y, e.w * 0.52, e.h * 0.46, 6); ctx.fill();
+      } else if (e.kind === 'human') {
+        rounded(ctx, e.x + e.w * 0.32, e.y + e.h * 0.26, e.w * 0.36, e.h * 0.62, 6); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(e.x + e.w * 0.5, e.y + e.h * 0.16, Math.min(e.w, e.h) * 0.22, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        rounded(ctx, e.x, e.y, e.w, e.h, 10); ctx.fill();
+      }
+    }
+  }
+
   function drawBrackets(ctx, x, y, w, h, color) {
-    const L = clamp(Math.min(w, h) * 0.22, 12, 26);
+    const L = clamp(Math.min(w, h) * 0.22, 12, 28);
     ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
     ctx.beginPath();
     // TL
     ctx.moveTo(x, y + L); ctx.lineTo(x, y); ctx.lineTo(x + L, y);
@@ -298,6 +325,43 @@
     // BL
     ctx.moveTo(x + L, y + h); ctx.lineTo(x, y + h); ctx.lineTo(x, y + h - L);
     ctx.stroke();
+  }
+
+  function layoutEdgeLabel(ctx, text, font, side, W, laneY) {
+    ctx.font = font;
+    const padX = 8;
+    const labelH = 22;
+    const tw = Math.ceil(ctx.measureText(text).width);
+    const labelW = Math.min(Math.max(tw + padX * 2, 80), Math.max(150, W * 0.22));
+    const gutter = 12;
+    const x = side === 'left' ? gutter : (W - gutter - labelW);
+    const y = Math.round(clamp(laneY - labelH / 2, 8, container.clientHeight - labelH - 8));
+    return { x, y, w: labelW, h: labelH, side };
+  }
+
+  function drawLabelPill(ctx, x, y, w, h, text, font) {
+    // Background
+    ctx.fillStyle = LABEL_BG;
+    rounded(ctx, x, y, w, h, 10);
+    ctx.fill();
+    // Accent tick
+    ctx.fillStyle = LABEL_TICK;
+    ctx.fillRect(x, y, 3, h);
+    // Text
+    ctx.font = font;
+    ctx.fillStyle = LABEL_TEXT;
+    ctx.fillText(text, x + 8, y + h - 6);
+  }
+
+  function nearestLaneIndex(lanes, y) {
+    let best = 0, bestD = Infinity;
+    for (let i = 0; i < lanes.length; i++) {
+      const d = Math.abs(lanes[i].y - y);
+      // Penalize lanes already used to spread labels out
+      const penalty = lanes[i].used * 14;
+      if (d + penalty < bestD) { bestD = d + penalty; best = i; }
+    }
+    return best;
   }
 
   function rounded(ctx, x, y, w, h, r) {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Studio — Minimalist BG Test</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Background container behind all content */
+    /* Fixed background animation layer behind all content */
     #ai-bg {
       position: fixed;
       inset: 0;
@@ -19,11 +19,11 @@
       inset: 0;
       /* Subtle darkening for better text contrast; tweak as needed */
       background:
-        radial-gradient(1200px 600px at 50% 20%, rgba(0,0,0,0.25), rgba(0,0,0,0.65) 70%),
-        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
-      opacity: 0.85;
+        radial-gradient(1200px 600px at 50% 20%, rgba(0,0,0,0.20), rgba(0,0,0,0.65) 70%),
+        linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
+      opacity: 0.9;
     }
-    /* Ensure content is above the background */
+    /* Ensure content sits above the background canvases */
     main, footer { position: relative; z-index: 1; }
   </style>
 </head>
@@ -31,7 +31,7 @@
 
   <!-- Fixed background animation layer -->
   <div id="ai-bg" aria-hidden="true">
-    <canvas id="ai-bg-gl"></canvas>
+    <canvas id="ai-bg-world"></canvas>
     <canvas id="ai-bg-hud"></canvas>
     <div class="shade"></div>
   </div>
@@ -102,16 +102,39 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/feather-icons"></script>
-  <script type="module">
-    import { initAIBg } from './js/ai-bg-three.js';
-    document.addEventListener('DOMContentLoaded', () => {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
       feather.replace();
-      // Minimalist + decorative (non-interactive)
-      initAIBg({
-        mode: 'minimal',
-        interactive: false
-      });
+
+      // Guarded mobile menu script (safe even if elements are missing)
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const navLinks = document.getElementById('navLinks');
+
+      if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          mobileMenuToggle.classList.toggle('active');
+        });
+
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
+
+  <!-- Background animation script (lightweight Canvas, non-blocking) -->
+  <script src="js/ai-bg-canvas.js" defer></script>
 </body>
 </html>

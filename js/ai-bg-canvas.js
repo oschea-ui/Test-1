@@ -298,15 +298,15 @@
     ctx.fillStyle = WORLD_SIL;
     for (const e of entities) {
       if (e.kind === 'car') {
-        rounded(ctx, e.x, e.y + e.h * 0.18, e.w, e.h * 0.64, 8); ctx.fill();
-        rounded(ctx, e.x + e.w * 0.24, e.y, e.w * 0.52, e.h * 0.46, 6); ctx.fill();
+        rounded(ctx, e.x, e.y + e.h * 0.18, e.w, e.h * 0.64, 1); ctx.fill();
+        rounded(ctx, e.x + e.w * 0.24, e.y, e.w * 0.52, e.h * 0.46, 1); ctx.fill();
       } else if (e.kind === 'human') {
-        rounded(ctx, e.x + e.w * 0.32, e.y + e.h * 0.26, e.w * 0.36, e.h * 0.62, 6); ctx.fill();
+        rounded(ctx, e.x + e.w * 0.32, e.y + e.h * 0.26, e.w * 0.36, e.h * 0.62, 1); ctx.fill();
         ctx.beginPath();
         ctx.arc(e.x + e.w * 0.5, e.y + e.h * 0.16, Math.min(e.w, e.h) * 0.22, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        rounded(ctx, e.x, e.y, e.w, e.h, 10); ctx.fill();
+        rounded(ctx, e.x, e.y, e.w, e.h, 1); ctx.fill();
       }
     }
   }

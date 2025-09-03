@@ -261,12 +261,12 @@ nav {
 }
 
 .cta-button {
-    background: var(--gradient-1);
-    border: none;
+    background: none;
+    border: 1px solid;
     padding: 1rem 2rem;
     color: var(--text-primary);
     font-size: 1.1rem;
-    border-radius: 30px;
+    border-radius: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;

@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
 
+  <main>
+    <!-- Hero with video background -->
+    <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videos/landing.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-content">
+        <h1>Welcome to <span style="color: #ffffff;">The Studio</span></h1>
+        <div class="hero-message">
+          <p>A private collective for serious creatives. Invite-only. No noise, just value.</p>
+          <a href="login.html" class="cta-button">Enter</a>
+          <p class="subtle-text">Fuel creativity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="mission container">
+      <div class="section-grid">
+        <div class="text-content">
+          <h2>Goal Orientated</h2>
+          <div class="mission-text">
+            <p>We strive to build a space where artists, thinkers, and innovators can focus deeply, free from distractions.</p>
+            <p class="highlight">No algorithms. No noise. Just creation. Let's keep it that way.</p>
+          </div>
+        </div>
+        <div class="gradient-border">
+          <p>Inside The Studio, you'll find curated discussions, tools for collaboration, and a shared sense of purpose. It's not for everyone, but it might be for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features container">
+      <h2>Why Join?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i data-feather="shield"></i>
+          <h3>Privacy</h3>
+          <p>Your work, your ideas, protected from the noise of the outside world.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="users"></i>
+          <h3>Community</h3>
+          <p>Connect with handpicked creatives who share your standards.</p>
+        </div>
+        <div class="feature-card">
+          <i data-feather="zap"></i>
+          <h3>Focus</h3>
+          <p>Work with intention in an environment designed for depth, not distraction.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+      <div class="footer-logo">The Studio</div>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Twitter"><i data-feather="twitter"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i data-feather="instagram"></i></a>
+        <a href="mailto:info@thestudio.com" class="social-icon" aria-label="Email"><i data-feather="mail"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 The Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      feather.replace();
+      
+      // Mobile menu toggle functionality
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const navLinks = document.getElementById('navLinks');
+      
+      if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          mobileMenuToggle.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

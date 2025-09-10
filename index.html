@@ -10,8 +10,12 @@
 <body>
 
   <main>
-    <!-- Hero -->
+    <!-- Hero with video background -->
     <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videos/landing.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       <div class="hero-content">
         <h1>Welcome to <span style="color: #ffffff;">The Studio</span></h1>
         <div class="hero-message">
@@ -83,27 +87,29 @@
       const mobileMenuToggle = document.getElementById('mobileMenuToggle');
       const navLinks = document.getElementById('navLinks');
       
-      mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-      });
-      
-      // Close mobile menu when clicking on a link
-      const navLinkItems = navLinks.querySelectorAll('a');
-      navLinkItems.forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
+      if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          mobileMenuToggle.classList.toggle('active');
         });
-      });
-      
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-          navLinks.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-        }
-      });
+        
+        // Close mobile menu when clicking on a link
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
 </body>

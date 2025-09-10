@@ -4103,3 +4103,75 @@ html {
   overflow: hidden; clip: rect(0, 0, 0, 0);
   white-space: nowrap; border: 0;
 }
+/* --- Video Hero Background --- */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000; /* fallback background */
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none; /* prevents interaction */
+  opacity: 0.55; /* adjust for readability */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  padding: 4rem 1rem;
+}
+
+.hero-message {
+  background: rgba(0, 0, 0, 0.45);
+  display: inline-block;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+}
+
+.cta-button {
+  margin: 1.5rem 0;
+  padding: .75rem 2rem;
+  font-size: 1.1rem;
+  background: #fff;
+  color: #222;
+  border: none;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  transition: background 0.2s, color 0.2s;
+}
+.cta-button:hover {
+  background: #222;
+  color: #fff;
+}
+
+.subtle-text {
+  opacity: 0.7;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .hero-content {
+    padding: 2rem 0.5rem;
+  }
+  .hero-message {
+    padding: 1rem 1rem;
+  }
+}
